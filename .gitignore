@@ -1,0 +1,10 @@
+node_modules/
+.expo/
+dist/
+ios/
+android/
+*.jks
+*.keystore
+credentials.json
+
+dist-staff/

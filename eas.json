@@ -1,0 +1,38 @@
+{
+  "cli": {
+    "version": ">=16.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "production": {
+      "autoIncrement": true
+    },
+    "staff-testflight": {
+      "extends": "production",
+      "distribution": "store",
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "staff"
+      }
+    }
+  },
+  "submit": {
+    "production": {},
+    "staff-testflight": {
+      "ios": {
+        "ascAppId": "6822838578",
+        "appleTeamId": "UCLH3R22ZQ",
+        "bundleIdentifier": "com.studioflowiq.staff"
+      }
+    }
+  }
+}
