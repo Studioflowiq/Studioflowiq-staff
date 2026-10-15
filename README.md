@@ -107,3 +107,13 @@ Expo web dashboard now confirms the Staff App Store distribution certificate and
 ### Apple member app record confirmed by user
 
 Apple app ID: `6822994842`; name StudioFlowIQ Members; bundle ID `com.studioflowiq.members`; SKU `studioflowiq-members-ios`. User screenshots confirm the bundle registration and app record. Submission profile now points to this exact member Apple app. Member signing credentials still need setup; no member cloud build or TestFlight upload is queued or verified.
+
+### Members signing and cloud build — October 15, 2026 UTC
+
+- Apple Developer session verified; Members bundle and App Store Connect record verified live (app ID `6822994842`).
+- Created `StudioFlowIQ Members TestFlight` App Store profile for `com.studioflowiq.members`, portal ID `3R83LF4265`, UUID `4fd68356-6ead-444f-ac9b-6f540e0d905d`, expires October 14, 2027. Reuses existing distribution certificate; Staff profile unchanged.
+- Expo confirms valid member certificate/profile and existing submission key `JBA8GB8T8H`. Optional APNs key skipped because client supports local reminders only.
+- Launched iOS build `386fb496-b38b-4e54-a964-018c6dd6fa7e` from commit `391377cbdab870d6fae2863915a04021004ebad6`, branch `member-app`, profile `member-testflight`, production environment, automatic submission using `member-testflight` enabled.
+- Build passed credentials preparation, prebuild and JavaScript bundling; native compilation is in progress. No finished IPA or TestFlight upload verified yet.
+- Build: https://expo.dev/accounts/studioflowiq-team/projects/studioflowiq-membersstudioflowiq-members/builds/386fb496-b38b-4e54-a964-018c6dd6fa7e
+- Members TestFlight currently shows No Builds pending completion and Apple processing. Do not start duplicate builds; monitor this build and its automatic submission.
