@@ -1,4 +1,15 @@
 module.exports = ({ config }) => {
+  if (process.env.EXPO_PUBLIC_APP_VARIANT === 'member') return {
+    ...config,
+    name: 'StudioFlowIQ Members',
+    slug: 'studioflowiq-membersstudioflowiq-members',
+    owner: 'studioflowiq-team',
+    scheme: 'studioflowiq-members',
+    plugins: ['./plugins/with-local-notifications.js', ...(config.plugins || [])],
+    ios: { ...config.ios, bundleIdentifier: 'com.studioflowiq.members', infoPlist: { ...config.ios.infoPlist, NSCameraUsageDescription: 'Take a photo for your member profile.', NSPhotoLibraryUsageDescription: 'Choose a photo for your member profile.' } },
+    android: { ...config.android, package: 'com.studioflowiq.members' },
+    extra: { ...config.extra, appVariant: 'member', eas: { projectId: 'bf5fc323-f8ac-4a1f-a208-a7652a012ba9' } },
+  };
   if (process.env.EXPO_PUBLIC_APP_VARIANT !== 'staff') return config;
   return {
     ...config,
