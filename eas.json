@@ -44,7 +44,8 @@
     "member-testflight": {
       "ios": {
         "appleTeamId": "UCLH3R22ZQ",
-        "bundleIdentifier": "com.studioflowiq.members"
+        "bundleIdentifier": "com.studioflowiq.members",
+        "ascAppId": "6822994842"
       }
     }
   }
