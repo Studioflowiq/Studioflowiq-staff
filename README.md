@@ -103,3 +103,7 @@ Expo web dashboard now confirms the Staff App Store distribution certificate and
 - Mobile typecheck, four tests and iOS JavaScript bundle export passed. This is not a signed IPA.
 - Expo build form prepared for iOS / member-app / member-testflight. No build queued: Expo reports missing iOS signing credentials for this app.
 - Apple sign-in was initially declined, then requested again by the user and submitted securely. Post-sign-in screen is unverified because browser controls are currently unavailable. No Apple member app record, bundle registration or provisioning profile has been verified. Resume by inspecting the existing Apple tab; do not assume sign-in succeeded or ask for passwords/codes in chat. Never reuse the staff provisioning profile for Members.
+
+### Apple member app record confirmed by user
+
+Apple app ID: `6822994842`; name StudioFlowIQ Members; bundle ID `com.studioflowiq.members`; SKU `studioflowiq-members-ios`. User screenshots confirm the bundle registration and app record. Submission profile now points to this exact member Apple app. Member signing credentials still need setup; no member cloud build or TestFlight upload is queued or verified.
