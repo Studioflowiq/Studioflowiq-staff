@@ -23,6 +23,13 @@
       "env": {
         "EXPO_PUBLIC_APP_VARIANT": "staff"
       }
+    },
+    "member-testflight": {
+      "extends": "production",
+      "distribution": "store",
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "member"
+      }
     }
   },
   "submit": {
@@ -32,6 +39,12 @@
         "ascAppId": "6822838578",
         "appleTeamId": "UCLH3R22ZQ",
         "bundleIdentifier": "com.studioflowiq.staff"
+      }
+    },
+    "member-testflight": {
+      "ios": {
+        "appleTeamId": "UCLH3R22ZQ",
+        "bundleIdentifier": "com.studioflowiq.members"
       }
     }
   }
