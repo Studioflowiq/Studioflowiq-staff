@@ -3,23 +3,26 @@
 Native Expo / React Native app, version 1.0.0. Provides AV8 FLY website access with in-app back navigation, a native offline flight-cost calculator, and persistent on-device trip notes with native sharing.
 
 ## Registered identities
+- Apple app: 6824047557
 - Apple bundle: com.av8fly.app
 - Apple team: UCLH3R22ZQ
 - Expo owner: studioflowiq-team
 - Expo project: 940246bd-1415-4fbc-a4e6-c2c4511d83b9
 - Expo slug: av8-flyav8fly
+- Source branch: av8fly-ios
+- Internal TestFlight group: AV8 FLY Team, manual build distribution
 
-## Validated
-- npm run typecheck
-- npm test
-- npm run bundle (iOS Hermes export)
+## Validation
+TypeScript checks, three targeted tests, and iOS Hermes export passed. Native signing passed after choosing the saved certificate uploaded Oct 14, 2026 at 3:00 PM (serial 61A31D56B8347A3C537E00F6987067B1). Unused expo-notifications was removed so the app does not require a push entitlement. No keys or certificate private material are committed.
 
-## Remaining release steps
-1. Complete the prepared AV8 FLY App Store Connect app record and put its Apple numeric app ID in eas.json submit.production.ios.ascAppId.
-2. With user approval, connect Expo to Studioflowiq/Studioflowiq-staff, select branch av8fly-ios, and build profile production.
-3. Reuse authorized Apple distribution credentials or configure app-specific provisioning for com.av8fly.app. Do not commit signing keys or API keys.
-4. Run an iOS store build and submit to App Store Connect. Verify processing completes before enabling internal TestFlight testing.
-5. Test on a physical iPhone, including website login, back navigation, uploads, offline recovery, notes persistence and native sharing.
-6. Complete App Store screenshots, privacy disclosures, age rating, support and privacy links, review information and required availability settings before requesting public App Store review.
+## Release progress
+Apple app, Expo project, GitHub connection, app-specific provisioning profile and existing Apple upload key are configured. Production build 84c352ef-c3e4-45e4-a025-8698d74bb1ad was launched from de010962cc8cb67600c8540d3c9de97eeaa27ae5 with automatic upload to App Store Connect after success. Check the live build status; this document does not establish completion.
 
-App Store publication and TestFlight activation have not occurred. The generated JavaScript bundle is not a signed .ipa. Labor-saving server changes delivered by the AV8 website remain subject to Apple policies.
+## Remaining steps
+1. Confirm successful build, automatic submission, and completed Apple processing.
+2. Obtain explicit permission to add hello@studioflowiq.com as an internal AV8 TestFlight tester; automatic approval review blocked the invitation pending that specific approval.
+3. Add the processed build to AV8 FLY Team manually.
+4. Test website login, back navigation, uploads, offline recovery, notes persistence and native sharing on a physical iPhone.
+5. Complete App Store screenshots, privacy disclosures, age rating, support/privacy links, review information and availability before public App Store review.
+
+App Store publication has not occurred. A JavaScript export alone is not a signed .ipa. Flight planning tools do not replace official briefings or approved aircraft information.
