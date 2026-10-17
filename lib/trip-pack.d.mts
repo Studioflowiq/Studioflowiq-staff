@@ -1,1 +1,1 @@
-export function tripPackHTML(plan:any,result:any,assessment:any):string;
+export function tripPackHTML(plan:any,result:any,assessment:any,options?:{assessment?:boolean;people?:number}):string;
