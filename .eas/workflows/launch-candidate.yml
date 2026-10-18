@@ -1,0 +1,17 @@
+name: AV8 FLY Apple billing launch candidate
+on:
+  workflow_dispatch: {}
+jobs:
+  build_ios:
+    name: Build verified source for iOS
+    type: build
+    params:
+      platform: ios
+      profile: production
+  submit_ios:
+    name: Upload candidate to TestFlight only
+    needs: [build_ios]
+    type: submit
+    params:
+      build_id: ${{ needs.build_ios.outputs.build_id }}
+      profile: production
