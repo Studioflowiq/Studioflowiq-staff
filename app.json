@@ -15,7 +15,8 @@
         "ITSAppUsesNonExemptEncryption": false,
         "NSLocationWhenInUseUsageDescription": "Show your position when you choose a location-based AV8 FLY tool.",
         "NSCameraUsageDescription": "Add an aircraft or profile photo when you choose to take a picture.",
-        "NSPhotoLibraryUsageDescription": "Choose aircraft and profile photos to upload."
+        "NSPhotoLibraryUsageDescription": "Choose aircraft and profile photos to upload.",
+        "NSMotionUsageDescription": "Use device motion when you enable the experimental phone attitude display. This is not an aircraft attitude instrument."
       }
     },
     "extra": {
