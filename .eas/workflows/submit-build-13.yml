@@ -1,6 +1,6 @@
 name: Submit approved AV8 FLY Build 13
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
 jobs:
   submit_ios:
     name: Upload Build 13 to App Store Connect
