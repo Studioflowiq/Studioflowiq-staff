@@ -1,3 +1,11 @@
+## TestFlight upload confirmed — 19 October 2026
+
+Both automatic EAS Submit jobs succeeded and the upload logs explicitly confirm completion at App Store Connect. Staff 1.0.0 (10): build 0d3775ba-50aa-4ebd-820a-41fc251d6636, submission c279357d-70f0-4832-bf12-5ae517a4dcf6, Apple build-upload ID 15a162dd-9061-493c-8894-096fb49d7e4b. Members 1.0.0 (8): build 834e10a6-9862-49ce-b31f-9aad86553b6e, submission f740f065-0055-47a8-a993-6169e0e50490, Apple build-upload ID efccb3ad-dee0-42c1-83d5-ff9f974c1668. Sources and sandbox profiles match the previously verified candidates.
+
+This supersedes prior unverified upload statements. App Store Connect requires renewed sign-in to check tester assignment and installation availability. Upload completion does not prove physical-device execution. Both App Store release recommendations remain NO-GO; no App Review submission was performed.
+
+---
+
 ## Latest verified checkpoint — 19 October 2026
 
 This checkpoint supersedes earlier status statements below; those sections are historical.
