@@ -32,7 +32,7 @@ function StudioApp(){
  useEffect(()=>{const sub=AppState.addEventListener('change',state=>{setAppState(state);if(state==='active')void reload()});return()=>sub.remove()},[reload]);
  // Poll only while active. This is server refresh, not a claim of realtime push delivery.
  useEffect(()=>{if(!token||appState!=='active')return;const id=setInterval(()=>void reload(),30000);return()=>clearInterval(id)},[token,appState,reload]);
- async function connect(value:string){const state=await request(endpoint,value,undefined,variant);await SecureStore.setItemAsync(storageKey,value,{keychainAccessible:SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY});setData(state);setToken(value);setError('')}
+ async function connect(value:string){const generation=++seq.current;setRefreshing(false);const state=await request(endpoint,value,undefined,variant);if(generation!==seq.current)return;await SecureStore.setItemAsync(storageKey,value,{keychainAccessible:SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY});setData(state);setToken(value);setError('')}
  async function mutate(body:any){if(pending.current)return;pending.current=true;const generation=++seq.current;setRefreshing(false);setBusy(true);try{const result=await api(endpoint,body);if(generation===seq.current){setData(result);setError('');}void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(()=>{});return result}catch(e:any){Alert.alert('Could not complete',e.message);throw e}finally{pending.current=false;setBusy(false)}}
  async function perform(body:any){try{await mutate(body)}catch{}}
  const switchTab=(next:Tab)=>{Keyboard.dismiss();setSelected(undefined);setSearch('');setTab(next);void Haptics.selectionAsync().catch(()=>{})};
