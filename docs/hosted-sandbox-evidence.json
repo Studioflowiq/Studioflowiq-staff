@@ -328,5 +328,20 @@
       "Independent App Store recommendation: Staff NO-GO; Members NO-GO"
     ],
     "credentialHandling": "User-authorized temporary token transfer completed; token stored only in sandbox backend secret/encrypted settings; temporary copies deleted; no secrets in this evidence"
+  },
+  "testflightUploadConfirmation": {
+    "staff": {
+      "version": "1.0.0 (10)",
+      "submission": "c279357d-70f0-4832-bf12-5ae517a4dcf6",
+      "appleUploadId": "15a162dd-9061-493c-8894-096fb49d7e4b"
+    },
+    "members": {
+      "version": "1.0.0 (8)",
+      "submission": "f740f065-0055-47a8-a993-6169e0e50490",
+      "appleUploadId": "efccb3ad-dee0-42c1-83d5-ff9f974c1668"
+    },
+    "status": "PASS: both upload logs confirm completion",
+    "testerAvailability": "NOT VERIFIED: App Store Connect sign-in required",
+    "appReviewSubmitted": false
   }
 }
