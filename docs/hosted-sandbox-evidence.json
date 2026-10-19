@@ -215,5 +215,41 @@
     "Hosted subscription renewals and retail checkout",
     "Native iPhone execution, accessibility, performance and recordings",
     "APNs delivery"
-  ]
+  ],
+  "publicAccessRecheck": {
+    "date": "2026-10-19",
+    "audience": "public (explicitly approved)",
+    "pythonClient": {
+      "result": "NOT TESTED",
+      "reason": "Cloudflare HTTP 403, text/plain error code 1010 prevented requests from reaching app handlers. All apparent denial passes and failures from this transport-blocked run are superseded."
+    },
+    "observedReads": [
+      {
+        "client": "browser",
+        "path": "/api/auth",
+        "result": "PASS",
+        "evidence": "authenticated:false"
+      },
+      {
+        "client": "browser",
+        "path": "/api/member",
+        "result": "PASS",
+        "evidence": "Private member link required; no member data returned"
+      },
+      {
+        "client": "curl",
+        "path": "/api/auth",
+        "result": "PASS",
+        "evidence": "HTTP 200 JSON authenticated:false"
+      },
+      {
+        "client": "curl",
+        "path": "/api/member",
+        "result": "PASS",
+        "evidence": "Private member link required; no member data returned"
+      }
+    ],
+    "nativeClientReachability": "NOT TESTED on iPhone",
+    "providerIntegration": "NOT TESTED; sandbox-token transfer blocked by automatic approval review"
+  }
 }
