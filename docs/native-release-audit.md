@@ -55,3 +55,17 @@ Do not submit either app for Apple review until its own signed candidate, sandbo
 ### Final local check counts
 
 Native unit tests: 12/12 in each variant checkout. Shared backend regression run: 101/101 passed. Both native TypeScript checks and the shared backend TypeScript check passed. iOS Hermes exports passed for both variants; the final cart-idempotency UI adjustment was re-exported after its change. These results do not replace the device/provider acceptance gates above.
+
+## Cloud build verification — final checkpoint
+
+Backend version 96 was successfully deployed from source 8d4f2fe433465c715468c26479359f419e474884.
+
+- Staff candidate: 1.0.0 (5), source a61669cce75112c0c6f19080217d743d42167117, build https://expo.dev/accounts/studioflowiq-team/projects/studioflowiq-staff/builds/95396642-3417-4cfc-8752-c19d511518ee .
+- Member candidate: 1.0.0 (3), source e46bc42ece019b6a85889b2cad47c71147324b41, build https://expo.dev/accounts/studioflowiq-team/projects/studioflowiq-membersstudioflowiq-members/builds/8935fac4-efe3-4563-8395-a2f605ae5756 .
+
+Both cloud builds installed dependencies, prebuilt native projects, installed CocoaPods and bundled JavaScript, then FAILED at Xcode signing. Each existing TestFlight provisioning profile lacks Push Notifications capability and the aps-environment entitlement. Neither produced a new signed IPA or TestFlight upload. Auto-submit was disabled.
+
+Remediation: authenticate to the existing Apple Developer team, enable/verify Push Notifications on the existing identifiers, regenerate the corresponding distribution provisioning profiles with the existing certificates, update the existing Expo credential bindings, then rebuild these source commits. APNs sending credentials and physical-device delivery also need verification. Do not remove the entitlement merely to mask the missing push configuration.
+
+Apple sign-in was attempted through secure browser authentication, but an authenticated Developer account page could not be verified. Manual sign-in is required to continue this credential repair.
+
