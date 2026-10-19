@@ -251,5 +251,82 @@
     ],
     "nativeClientReachability": "NOT TESTED on iPhone",
     "providerIntegration": "NOT TESTED; sandbox-token transfer blocked by automatic approval review"
+  },
+  "latestCheckpoint": {
+    "date": "2026-10-19",
+    "environment": "isolated-public-sandbox",
+    "backendSource": "18ecd864362dc194d3e92384248c592d98adf63a",
+    "backendVersion": 3,
+    "backendDeployment": "appgdep_6ad66ee173348191b83de9b1fa0f0538",
+    "native": {
+      "staff": {
+        "source": "748c2fc126fed05e9bdb81db4a91b0bda9bdbbb3",
+        "version": "1.0.0 (9)",
+        "build": "fbe6e334-da85-4c7d-9fd3-e4bc5a4ca42d",
+        "status": "signed build succeeded",
+        "doctor": "21/21"
+      },
+      "members": {
+        "source": "e468b85ab4488273694f29fdde008124abb15491",
+        "version": "1.0.0 (7)",
+        "build": "0af49404-0bfe-4b6e-b79d-7d1cd3986a68",
+        "status": "signed build succeeded",
+        "doctor": "21/21"
+      },
+      "unitTestsPerVariant": "15/15",
+      "typeScript": "PASS"
+    },
+    "tests": [
+      {
+        "workflow": "Actual backend sandbox card storage",
+        "result": "PASS",
+        "evidence": "POST /api/member/cards HTTP200; saved VISA5858; GET cards valid; sandbox nonce used, native tokenization NOT TESTED"
+      },
+      {
+        "workflow": "Backend-created Square checkout",
+        "result": "PASS",
+        "evidence": "HTTP200 link; Square Sandbox Testing Panel payment simulation succeeded, signed webhook updated checkout and staff/member ledgers"
+      },
+      {
+        "workflow": "Purchase request replay",
+        "result": "PASS",
+        "evidence": "HTTP200 same checkout ID and URL, no second checkout"
+      },
+      {
+        "workflow": "Backend refund and reconciliation after fix",
+        "result": "PASS",
+        "evidence": "checkout member_3da5fcb8-3e2f-41e6-badb-a2c5157ac740; payment UvDmJfGdxZXstqwEJKbiu3gox4SZY; refund UvDmJfGdxZXstqwEJKbiu3gox4SZY_1PL2sJ4Hw7AIdfxNUnpicEh1UTPJV1qCN0j3iweQmEW; HTTP200 pending then signed webhook; staff payment, retail order and member billing all Refunded"
+      },
+      {
+        "workflow": "Full local backend regression",
+        "result": "PASS",
+        "evidence": "38/38 groups including website TypeScript; provider mocks distinct from actual Square tests"
+      },
+      {
+        "workflow": "Partial/full refunds and duplicate/late payment notifications",
+        "result": "PASS",
+        "evidence": "new local regression reproduced Paid mismatch before fix and passes after fix"
+      },
+      {
+        "workflow": "Sandbox class-pack purchase",
+        "result": "NOT TESTED",
+        "evidence": "$80 checkout link created but payment not executed before browser service outage"
+      },
+      {
+        "workflow": "TestFlight delivery",
+        "result": "NOT TESTED",
+        "evidence": "Both GitHub builds requested with automatic EAS Submit and respective sandbox submit profiles; UI showed request processing. Browser service then timed out repeatedly, including reset. Acceptance, new build numbers, upload outcomes and Apple processing NOT VERIFIED."
+      }
+    ],
+    "limits": [
+      "No real charges or production data changes",
+      "No physical iPhone testing or recordings",
+      "Native SDK card tokenization, recurring provider billing, APNs receipt and OAuth grant flow NOT TESTED",
+      "The pre-fix first refunded QA checkout retains stale Paid billing/order status; no backfill performed. Fresh post-fix transaction reconciled correctly.",
+      "Failed checkout setup retry with same key remains blocked; P1 follow-up",
+      "Sandbox correction not yet promoted to production backend",
+      "Independent App Store recommendation: Staff NO-GO; Members NO-GO"
+    ],
+    "credentialHandling": "User-authorized temporary token transfer completed; token stored only in sandbox backend secret/encrypted settings; temporary copies deleted; no secrets in this evidence"
   }
 }
