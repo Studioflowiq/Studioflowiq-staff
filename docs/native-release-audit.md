@@ -205,8 +205,17 @@ Both native variants now have explicit sandbox TestFlight build profiles. They p
 
 - Staff sandbox source: 8a8ce0ac684a7e18e3a461d799673c2608ac6f93; cloud build f8de7760-edd3-4e9c-9a08-6b9ed3800d57.
 - Members sandbox source: 6c12a21a664f4c9041168c8e2cf32960397d7996; cloud build 7f6c1ac3-3722-4f57-8c59-3e29b37947ee.
-- Cloud build requests were accepted with automatic submission OFF. Build outcomes require their own verification. Neither has been uploaded to TestFlight at this checkpoint.
+- Both cloud signing builds SUCCEEDED. Staff 1.0.0 (8): 4m 18s build, 4m 28s total. Members 1.0.0 (6): 4m 7s build, 4m 45s total. Both Expo Doctor runs passed 21/21 checks. Automatic submission was OFF. Neither has been uploaded to TestFlight at this checkpoint.
 
 The Sites service remains owner-private. Native TestFlight clients and Square webhooks cannot use the private service credential; it must never be bundled in an app. A separately approved public network audience with existing account/API authentication is required for those clients. Square sandbox configuration and webhook credentials still need to be connected to this new backend; direct Developer Console token tests do not establish OAuth scope or end-to-end reconciliation.
 
 Scenarios A and D (purchases/retail reconciliation), provider-backed renewals and payment recovery, push receipt, native accessibility/performance, recordings and full on-device scenarios remain NOT TESTED. APNs sending credentials are still absent. Member and Staff remain independently NO-GO for App Store launch. TestFlight distribution remains pending the applicable checks and external access setup.
+
+
+### Signed sandbox build evidence
+
+Staff: https://expo.dev/accounts/studioflowiq-team/projects/studioflowiq-staff/builds/f8de7760-edd3-4e9c-9a08-6b9ed3800d57
+
+Members: https://expo.dev/accounts/studioflowiq-team/projects/studioflowiq-membersstudioflowiq-members/builds/7f6c1ac3-3722-4f57-8c59-3e29b37947ee
+
+The Expo environment label `production` identifies its store-signing build environment; the explicit sandbox build profiles set EXPO_PUBLIC_API_ORIGIN to the separate sandbox backend. TestFlight upload remains pending. Physical iPhone verification, native recordings and APNs delivery are NOT TESTED. The sandbox Site's audience must not be changed without explicit approval, and its private service credential must never enter the native bundle.
