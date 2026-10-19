@@ -1,0 +1,24 @@
+name: Test iOS autofill workaround then build Members
+jobs:
+  simulator:
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: member
+    params:
+      platform: ios
+      profile: member-ios-simulator
+  keyboard_test:
+    needs: [simulator]
+    type: maestro
+    params:
+      build_id: ${{ needs.simulator.outputs.build_id }}
+      flow_path: .maestro/login-focus.yml
+      record_screen: true
+  release_candidate:
+    needs: [keyboard_test]
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: member
+    params:
+      platform: ios
+      profile: member-testflight
