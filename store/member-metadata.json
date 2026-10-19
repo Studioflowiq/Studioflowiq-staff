@@ -1,0 +1,34 @@
+{
+  "name": "StudioFlowIQ Members",
+  "bundleIdentifier": "com.studioflowiq.members",
+  "expoProjectId": "bf5fc323-f8ac-4a1f-a208-a7652a012ba9",
+  "appStoreConnectId": "6822994842",
+  "subtitle": "Your studio, in flow",
+  "supportUrl": "https://studioflowiq.com/support",
+  "privacyPolicyUrl": "https://studioflowiq.com/privacy",
+  "supportEmail": "hello@studioflowiq.com",
+  "keywords": "fitness,studio,classes,membership,booking,wellness",
+  "description": "Book your next class, follow reservations and waitlist status, access your studio membership, show your check-in pass, manage your profile and contact support. Studio access is by private invitation. An internet connection is required for bookings and billing.",
+  "reviewNotes": "Invitation-only access. Supply dedicated review accounts and a sample studio. Purchases cover in-person studio services/retail; no software subscription purchase is exposed in the native client. Do not use live cards for review tests.",
+  "releaseStatus": "DRAFT \u2014 NOT SUBMITTED",
+  "reviewCredentials": null,
+  "legalEntityVerification": "Outstanding",
+  "deviceScreenshots": "Outstanding",
+  "privacyDisclosureDraft": {
+    "tracking": false,
+    "linkedToUser": [
+      "Contact information",
+      "Profile photos",
+      "User identifiers",
+      "Purchase history",
+      "Support content",
+      "Fitness attendance and membership information"
+    ],
+    "purposes": [
+      "App functionality",
+      "Customer support",
+      "Account management"
+    ],
+    "finalVerificationRequired": true
+  }
+}
