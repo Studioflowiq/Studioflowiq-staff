@@ -21,3 +21,7 @@ These candidates use normal studio service sign-in; sandbox credentials and invi
 Physical-device photo and full journeys, all-role screen acceptance, production provider authorization/configuration and subscription lifecycle, APNs key/delivery, device accessibility/performance/recordings, account deletion processing/retention, security dependency disposition and complete App Store disclosures/review assets remain outstanding. Native owner-tool coverage is expanded, not complete portal parity; see owner-native-completion.md limitations. No App Store review submission or public release was performed.
 
 Independent recommendations: Member NO-GO for public launch; Staff NO-GO for public launch. These are TestFlight review candidates only.
+
+
+## Distribution update
+Both signing builds SUCCEEDED. Staff submission 449ea35a-08e4-4656-8915-b666476b32a1 and Members submission e52d9f54-fbce-40df-8d52-036fc79836f6 both confirmed IPA file upload completion and remained in Apple PROCESSING at the final check. Existing tester-group assignment is NOT VERIFIED. Apple rejected the secure sign-in attempt with 'Check the account information you entered and try again.' Manual sign-in is required to continue group assignment. Do not claim either candidate is available on an iPhone yet.
