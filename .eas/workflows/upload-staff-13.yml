@@ -1,0 +1,10 @@
+name: Upload staff email-login update
+jobs:
+  upload:
+    name: Upload completed Staff build 13 to TestFlight
+    type: submit
+    env:
+      EXPO_PUBLIC_APP_VARIANT: staff
+    params:
+      build_id: f49a30c6-a328-453e-9471-a91e82765447
+      profile: staff-testflight
