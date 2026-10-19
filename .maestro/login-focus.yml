@@ -16,7 +16,10 @@ appId: com.studioflowiq.members
 - tapOn:
     id: field-member-email
 - waitForAnimationToEnd
-- eraseText
+- longPressOn:
+    id: field-member-email
+- tapOn: Select All
+- eraseText: 1
 - inputText: second.probe@example.com
 - assertVisible: second.probe@example.com
 - pressKey: Enter
