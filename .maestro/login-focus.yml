@@ -12,14 +12,14 @@ appId: com.studioflowiq.members
 - inputText: keyboard.probe@example.com
 - assertVisible: keyboard.probe@example.com
 - takeScreenshot: email-typed
-- hideKeyboard
+- pressKey: Enter
 - tapOn:
     id: field-member-email
 - waitForAnimationToEnd
 - eraseText
 - inputText: second.probe@example.com
 - assertVisible: second.probe@example.com
-- hideKeyboard
+- pressKey: Enter
 - scrollUntilVisible:
     element:
       id: field-password
@@ -29,4 +29,3 @@ appId: com.studioflowiq.members
 - waitForAnimationToEnd
 - inputText: SimulatorOnly1234
 - takeScreenshot: password-typed
-- hideKeyboard
