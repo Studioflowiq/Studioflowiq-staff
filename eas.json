@@ -30,6 +30,20 @@
       "env": {
         "EXPO_PUBLIC_APP_VARIANT": "member"
       }
+    },
+    "staff-sandbox-testflight": {
+      "extends": "staff-testflight",
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "staff",
+        "EXPO_PUBLIC_API_ORIGIN": "https://studioflowiq-sandbox.fiitlyfe2021.chatgpt.site"
+      }
+    },
+    "member-sandbox-testflight": {
+      "extends": "member-testflight",
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "member",
+        "EXPO_PUBLIC_API_ORIGIN": "https://studioflowiq-sandbox.fiitlyfe2021.chatgpt.site"
+      }
     }
   },
   "submit": {
@@ -42,6 +56,20 @@
       }
     },
     "member-testflight": {
+      "ios": {
+        "appleTeamId": "UCLH3R22ZQ",
+        "bundleIdentifier": "com.studioflowiq.members",
+        "ascAppId": "6822994842"
+      }
+    },
+    "staff-sandbox-testflight": {
+      "ios": {
+        "ascAppId": "6822838578",
+        "appleTeamId": "UCLH3R22ZQ",
+        "bundleIdentifier": "com.studioflowiq.staff"
+      }
+    },
+    "member-sandbox-testflight": {
       "ios": {
         "appleTeamId": "UCLH3R22ZQ",
         "bundleIdentifier": "com.studioflowiq.members",

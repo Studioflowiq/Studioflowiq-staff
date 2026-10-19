@@ -1,4 +1,7 @@
-export const ORIGIN='https://studioflowiq.com';
+const configuredOrigin=process.env.EXPO_PUBLIC_API_ORIGIN||'https://studioflowiq.com';
+if(!['https://studioflowiq.com','https://studioflowiq-sandbox.fiitlyfe2021.chatgpt.site'].includes(configuredOrigin))throw new Error('Unrecognized StudioFlowIQ service origin');
+export const ORIGIN=configuredOrigin;
+export const SANDBOX=ORIGIN!=='https://studioflowiq.com';
 export class ApiError extends Error{constructor(message:string,public status:number){super(message)}}
 export async function request(path:string,token:string,body?:unknown,variant='staff'){
  if(!path.startsWith('/api/'))throw new Error('Invalid service path');
