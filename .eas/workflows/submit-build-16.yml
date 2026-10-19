@@ -1,0 +1,10 @@
+name: Submit approved AV8 FLY Build 16
+on:
+  workflow_dispatch: {}
+jobs:
+  submit_ios:
+    name: Upload approved Build 16 to App Store Connect
+    type: submit
+    params:
+      build_id: 82ed98c7-72e9-4e47-96ef-abaf78f92006
+      profile: production
