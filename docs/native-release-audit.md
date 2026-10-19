@@ -1,3 +1,28 @@
+## Latest verified checkpoint — 19 October 2026
+
+This checkpoint supersedes earlier status statements below; those sections are historical.
+
+**Staff: NO-GO for App Store release. Members: NO-GO for App Store release. TestFlight upload outcome UNVERIFIED.** Both internal TestFlight build-and-upload requests were initiated with the exact native sources below and their sandbox submit profiles. The UI reached request processing, then browser service calls and reset timed out. Do not claim Apple received either new build or retry blindly; inspect Expo build/submission history first.
+
+| App | Last verified signed archive | Source | Expo Doctor |
+|---|---|---|---|
+| Staff | 1.0.0 (9), fbe6e334-da85-4c7d-9fd3-e4bc5a4ca42d | 748c2fc126fed05e9bdb81db4a91b0bda9bdbbb3 | 21/21 |
+| Members | 1.0.0 (7), 0af49404-0bfe-4b6e-b79d-7d1cd3986a68 | e468b85ab4488273694f29fdde008124abb15491 | 21/21 |
+
+Native TypeScript and 15/15 tests passed in each variant. Fixed the link allowlist to permit only the exact HTTPS Square sandbox origin, only in sandbox builds; HTTP, userinfo, alternate ports, lookalikes and production-mode access remain rejected.
+
+Square Sandbox is now connected to fictional studio A only. The user-authorized credential transfer completed; temporary credential files were deleted. Test-card saving through the actual backend passed. The Developer Sandbox token passed the card route's application/merchant/scope validation; real studio OAuth onboarding is still unverified. Sandbox nonce use does not prove native secure-field tokenization.
+
+Actual provider-backed $1 checkout creation, Square Sandbox Testing Panel payment simulation, signed webhook processing, staff receipt and member billing visibility, duplicate request replay, and an authorized refund were executed. Square rejected reserved fixture email domains; the StudioFlowIQ-owned receipt address succeeded. No real charge was initiated.
+
+Testing found a P1 synchronization bug: confirmed refunds updated staff receipts while member billing and retail orders remained Paid. Corrected sandbox backend version 3, source 18ecd864362dc194d3e92384248c592d98adf63a, deployment appgdep_6ad66ee173348191b83de9b1fa0f0538. Local tests reproduce the failure before the fix and verify partial/full refunds, duplicate events and late payment notifications afterward. All 38 backend check groups passed, including TypeScript. The isolated sandbox deployment succeeded.
+
+A fresh $1 purchase and refund after deployment verified all three records show Refunded: payment UvDmJfGdxZXstqwEJKbiu3gox4SZY, checkout member_3da5fcb8-3e2f-41e6-badb-a2c5157ac740. The previous pre-fix QA transaction still has stale billing/order status; a historical reconciliation/backfill was not performed. Failed-setup retry behavior also remains a P1 follow-up. This backend fix has not been promoted to the production service.
+
+An $80 class-pack sandbox checkout was prepared, but its payment/entitlement journey was NOT TESTED before the browser outage. Physical-device installation, recordings, native tokenization, recurring billing, push delivery, accessibility/performance, deletion operations and the previously recorded security/parity gates remain open. No App Store review submission was performed or authorized. See hosted-sandbox-evidence.json latestCheckpoint for exact workflow evidence.
+
+---
+
 # StudioFlowIQ — native implementation and release status
 
 Updated 19 October 2026. Member and Staff release decisions remain independent.
