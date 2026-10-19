@@ -1,0 +1,22 @@
+name: Verify actual iOS typing then build Members
+jobs:
+  baseline_typing:
+    type: maestro
+    params:
+      build_id: 457e9d55-715e-4b15-8760-b586eeed1040
+      flow_path: .maestro/login-focus.yml
+      record_screen: true
+  corrected_typing:
+    type: maestro
+    params:
+      build_id: 0eb2d31d-34c0-4001-92b0-49d6bfea2284
+      flow_path: .maestro/login-focus.yml
+      record_screen: true
+  release_candidate:
+    needs: [corrected_typing]
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: member
+    params:
+      platform: ios
+      profile: member-testflight
