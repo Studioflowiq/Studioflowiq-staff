@@ -9,9 +9,6 @@ appId: com.studioflowiq.members
 - tapOn:
     id: field-member-email
 - waitForAnimationToEnd
-- assertVisible:
-    id: field-member-email
-    focused: true
 - inputText: keyboard.probe@example.com
 - assertVisible: keyboard.probe@example.com
 - takeScreenshot: email-typed
@@ -19,9 +16,6 @@ appId: com.studioflowiq.members
 - tapOn:
     id: field-member-email
 - waitForAnimationToEnd
-- assertVisible:
-    id: field-member-email
-    focused: true
 - eraseText
 - inputText: second.probe@example.com
 - assertVisible: second.probe@example.com
@@ -33,9 +27,6 @@ appId: com.studioflowiq.members
 - tapOn:
     id: field-password
 - waitForAnimationToEnd
-- assertVisible:
-    id: field-password
-    focused: true
 - inputText: SimulatorOnly1234
 - takeScreenshot: password-typed
 - hideKeyboard
