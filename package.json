@@ -23,6 +23,7 @@
     "expo-haptics": "~57.0.3",
     "expo-iap": "^6.1.1",
     "expo-print": "~57.0.2",
+    "expo-sensors": "~57.0.3",
     "expo-sharing": "~57.0.23",
     "expo-status-bar": "~57.0.1",
     "expo-system-ui": "~57.0.4",
