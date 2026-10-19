@@ -1,3 +1,4 @@
+import Constants from 'expo-constants';
 import React,{useCallback,useEffect,useRef,useState} from 'react';
 import {AccessibilityInfo,ActivityIndicator,Alert,AppState,FlatList,Image,Keyboard,KeyboardAvoidingView,Linking,Modal,Platform,Pressable,RefreshControl,ScrollView,Text,View,useColorScheme} from 'react-native';
 import {SafeAreaProvider,SafeAreaView} from 'react-native-safe-area-context';
@@ -12,7 +13,7 @@ import {enableAlerts,Notifications} from './native/notifications';
 import {NativePass,NativeScanner,PaymentCard} from './native/device';
 import {Support,Reports,Store,Privacy,StaffHours,Commissions,StaffAccounts,Refunds} from './native/workspaces';
 import {RecordEditor} from './native/editor';
-const MEMBER=process.env.EXPO_PUBLIC_APP_VARIANT==='member';
+const MEMBER=Constants.expoConfig?.extra?.appVariant==='member';
 const variant=MEMBER?'member':'staff',storageKey='studioflowiq.'+variant+'.session.v2';
 type Tab='home'|'schedule'|'bookings'|'pass'|'members'|'more';
 export default function App(){const scheme=useColorScheme();return <SafeAreaProvider><Theme.Provider value={scheme==='dark'?dark:light}><StudioApp/></Theme.Provider></SafeAreaProvider>}
