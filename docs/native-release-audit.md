@@ -219,3 +219,16 @@ Staff: https://expo.dev/accounts/studioflowiq-team/projects/studioflowiq-staff/b
 Members: https://expo.dev/accounts/studioflowiq-team/projects/studioflowiq-membersstudioflowiq-members/builds/7f6c1ac3-3722-4f57-8c59-3e29b37947ee
 
 The Expo environment label `production` identifies its store-signing build environment; the explicit sandbox build profiles set EXPO_PUBLIC_API_ORIGIN to the separate sandbox backend. TestFlight upload remains pending. Physical iPhone verification, native recordings and APNs delivery are NOT TESTED. The sandbox Site's audience must not be changed without explicit approval, and its private service credential must never enter the native bundle.
+
+
+## Public sandbox access and payment setup checkpoint
+
+The user explicitly approved public network reachability. Sites access changed to public, revision 2. Browser GET /api/auth returned authenticated:false, and GET /api/member required the private member link without returning member data. Curl also received those JSON responses. Account authentication and role/tenant enforcement were retained.
+
+A separate Python public-client run was blocked before application execution by Cloudflare HTTP 403, text/plain error code 1010. Its apparent five denial passes and twelve failures are NOT valid application results; that run is classified NOT TESTED due to transport blocking. It does not invalidate the prior 39 hosted handler checks through documented private service access. Native iPhone reachability remains NOT TESTED and must be checked before marking either candidate ready. Cloudflare's explanation: https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-1xxx-errors/error-1010/ . No fingerprint changes or security-control weakening were applied.
+
+A protected, short-lived, exact-origin sandbox payment initializer was implemented. Four local tests passed: setup authorization; missing token/production application-ID rejection before provider calls; expected merchant/location and fixture prerequisites; encrypted storage, secret-free responses and webhook reuse. The existing database trigger rejects assigning one Square merchant to unrelated studios. The initializer preserves it and configures only qa-studio-a; qa-studio-b remains unconnected for account-isolation tests. No production business rule was weakened. These initializer tests mock Square and do not prove the live provider setup.
+
+The initializer is designed to read the existing sandbox-only Square token from secret runtime configuration, validate the previously verified Default Test Account/location, configure an app webhook with a server-encrypted signing key, and store encrypted credentials for the primary fictional studio. It does not verify OAuth scopes. Missing secrets fail closed. No production token or application secret is used.
+
+Automatic approval review rejected extracting the live sandbox bearer token from the browser into a shared file because that extraction/transfer method was not explicitly authorized. The temporary browser-side file was removed; no token was transferred to the backend or committed to Git. Completing that protected transfer requires explicit user approval of the method or user-performed secure configuration. Payment journeys, webhook reconciliation, renewals, APNs/device checks and TestFlight upload remain pending.
