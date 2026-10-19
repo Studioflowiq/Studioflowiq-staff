@@ -1,0 +1,41 @@
+appId: com.studioflowiq.members
+---
+- launchApp:
+    clearState: true
+- scrollUntilVisible:
+    element:
+      id: field-member-email
+    direction: DOWN
+- tapOn:
+    id: field-member-email
+- waitForAnimationToEnd
+- assertVisible:
+    id: field-member-email
+    focused: true
+- inputText: keyboard.probe@example.com
+- assertVisible: keyboard.probe@example.com
+- takeScreenshot: email-typed
+- hideKeyboard
+- tapOn:
+    id: field-member-email
+- waitForAnimationToEnd
+- assertVisible:
+    id: field-member-email
+    focused: true
+- eraseText
+- inputText: second.probe@example.com
+- assertVisible: second.probe@example.com
+- hideKeyboard
+- scrollUntilVisible:
+    element:
+      id: field-password
+    direction: DOWN
+- tapOn:
+    id: field-password
+- waitForAnimationToEnd
+- assertVisible:
+    id: field-password
+    focused: true
+- inputText: SimulatorOnly1234
+- takeScreenshot: password-typed
+- hideKeyboard
