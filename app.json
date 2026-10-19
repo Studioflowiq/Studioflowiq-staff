@@ -16,7 +16,7 @@
         "NSLocationWhenInUseUsageDescription": "Show your position when you choose a location-based AV8 FLY tool.",
         "NSCameraUsageDescription": "Add an aircraft or profile photo when you choose to take a picture.",
         "NSPhotoLibraryUsageDescription": "Choose aircraft and profile photos to upload.",
-        "NSMotionUsageDescription": "Use device motion when you enable the experimental phone attitude display. This is not an aircraft attitude instrument."
+        "NSMotionUsageDescription": "Use device motion and the barometer when you enable AV8's experimental attitude or measured ambient pressure display."
       }
     },
     "extra": {
@@ -29,7 +29,13 @@
       "@react-native-community/datetimepicker",
       "expo-sharing",
       "expo-font",
-      "expo-iap"
+      "expo-iap",
+      [
+        "expo-sensors",
+        {
+          "motionPermission": "Use device motion and the barometer when you enable AV8's experimental attitude or measured ambient pressure display."
+        }
+      ]
     ]
   }
 }
