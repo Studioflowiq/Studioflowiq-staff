@@ -1,0 +1,10 @@
+name: Submit AV8 FLY Pro menu fix Build 17
+on:
+  workflow_dispatch: {}
+jobs:
+  submit_ios:
+    name: Upload Build 17 Pro access menu fix to TestFlight
+    type: submit
+    params:
+      build_id: f40d10b2-f522-44a4-8460-ee83806cce05
+      profile: production
