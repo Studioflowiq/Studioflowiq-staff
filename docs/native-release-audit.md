@@ -41,8 +41,8 @@ PASS below is limited to the executed scope in the evidence column. No device jo
 | Schedule, booking and cancellation | NOT TESTED | NOT TESTED | Native date/time/domain mapping unit tests PASS; real cross-app mutation not executed |
 | Capacity, balances, waitlist promotion | NOT TESTED | NOT TESTED | No device/staging promotion scenario executed |
 | QR generation/scanning/check-in | NOT TESTED | NOT TESTED | QR parser unit tests PASS; camera/device journey outstanding |
-| Payment card tokenization, purchase, decline, retry | NOT TESTED | NOT TESTED | Server price/idempotency local-handler tests PASS with provider mocks; Square sandbox not executed |
-| Refunds and recurring cancellation | NOT TESTED | NOT TESTED | Local ownership/role/amount tests PASS; provider reconciliation outstanding |
+| Payment card tokenization, purchase, decline, retry | NOT TESTED | NOT TESTED | Local server price/idempotency tests PASS with provider mocks; direct Square sandbox payment/card tests PASS (see checkpoint); app tokenization/journey NOT TESTED |
+| Refunds and recurring cancellation | NOT TESTED | NOT TESTED | Local ownership/role/amount tests PASS; direct Square sandbox refund/payment reconciliation PASS; app/backend webhook reconciliation and recurring cancellation NOT TESTED |
 | Retail POS and reporting | NOT TESTED | NOT TESTED | No processor-backed POS transaction executed |
 | Support correspondence across apps/studios | NOT TESTED | NOT TESTED | Local member ticket isolation tests PASS; real user exchange outstanding |
 | Push receipt, denied permission, foreground/background | NOT TESTED | NOT TESTED | Registration/dispatch implemented; no APNs sending key bound and no device receipt |
@@ -140,4 +140,54 @@ Verified build detail pages:
 
 Successful signed packaging does not establish successful app execution. Neither final candidate has been installed on a physical iPhone, uploaded to TestFlight, or submitted for Apple review by this run. Automatic submission was OFF for every new build. Documentation-only commits after the candidate sources do not change their application code.
 
-Outstanding requirements: authorized non-production member/staff accounts across two studios and all four staff roles; Square sandbox merchant/credentials and safe provider-webhook test access; a connected iPhone or tester-provided executed evidence/recordings; APNs sending-key setup; deletion/retention operations and privacy-disclosure decisions; staff feature-parity completion; dependency advisory remediation or documented security disposition; final independent review and release approval for each app. No real payments, account deletions, or production membership changes were performed by the automated tests.
+Outstanding requirements: authorized non-production member/staff accounts across two studios and all four staff roles; isolated sandbox backend configuration and safe provider-webhook test access (Square Developer Console sandbox access is now verified); a connected iPhone or tester-provided executed evidence/recordings; APNs sending-key setup; deletion/retention operations and privacy-disclosure decisions; staff feature-parity completion; dependency advisory remediation or documented security disposition; final independent review and release approval for each app. No real payments, account deletions, or production membership changes were performed by the automated tests.
+
+
+## Sandbox and regression checkpoint — 19 October 2026
+
+**Members: NO-GO for App Store review. Staff: NO-GO for App Store review.** These provider checks do not change the device/workflow release decision. TestFlight distribution is authorized after the required testing passes; neither candidate was uploaded in this checkpoint.
+
+### Regression corrections and results
+
+The final complete `node scripts/verify-platform.mjs` run passed **36/36 check groups** (34 test files, website TypeScript, mobile invitation/navigation). This count is groups, not individual assertions. Native TypeScript and **12/12 tests in each variant** passed again. Provider calls in the regression suite remain mocked.
+
+Eight legacy fixture files were corrected. A shared SQLite/D1 fixture adapter now lazily prepares statements, supports unbound statement execution, preserves immutable bound statements and executes batches transactionally. Runtime mocks now provide Cloudflare Workers, Next headers and Headers. Booking fixtures respect current inclusive cancellation cutoffs, billing windows and one-class-per-day rules. Sample fixtures seed fictional in-memory records instead of invoking the prohibited real-workspace demo reset. Credit and free-class cases now select the correct plan, use current catalog pricing and verify duplicate checkout rejection without adding an order. No production business logic was changed to make these tests pass.
+
+Fixture corrections are pushed at backend source **31061ee75b39919b88ddb98989c169a3b8ca1d62**, saved as version **97** without deployment. Production remains version 96. The test-only source checkpoint does not require native rebuilds.
+
+### Actual Square Sandbox execution
+
+Executed through Square API Explorer using the existing StudioFlowIQ application's Default Test Account sandbox token, API version **2026-09-16**, on 19 October 2026. Requests used `connect.squareupsandbox.com`. No production token, real card, real customer information or real charge was used. This is direct provider testing, not an executed journey through either native app or the StudioFlowIQ backend. Developer Console token success does not prove studio OAuth grants contain the required scopes.
+
+Sandbox location **L5A2NZBW9GJAM**, merchant **MLJN6QPM1FCYP**, was ACTIVE, USD and enabled for credit card processing.
+
+| Provider check | Result | Executed evidence |
+|---|---|---|
+| Authenticated location lookup | PASS | HTTP 200; active USD card-processing location |
+| Simulated $1 card payment | PASS | HTTP 200; payment am1Uivn16bZTkmmHfIPrsNWpxFOZY; COMPLETED/CAPTURED; amount 100 USD cents |
+| Identical payment replay | PASS | HTTP 200; identical payment ID and original creation time; no second payment ID |
+| Declined test card | PASS | HTTP 400; GENERIC_DECLINE; payment oLux4E4uXUUJr5FZmD0XB8MhQvVZY FAILED, approved amount 0 |
+| Invalid CVV | PASS | HTTP 400; CVV_FAILURE; payment QnWf0fpriVibONda19dUGVEbxSCZY FAILED |
+| Invalid expiration | PASS | HTTP 400; INVALID_EXPIRATION; payment 2y69ZnYSIfM9eoZALc8S1k2m5uWZY FAILED |
+| Reused test nonce | PASS | HTTP 400; CARD_TOKEN_USED |
+| Full simulated refund | PASS | HTTP 200; initially PENDING, subsequently COMPLETED; refund am1Uivn16bZTkmmHfIPrsNWpxFOZY_ElNCRY03SZsGAJGOMeEbk3uMEA8mbCAMxGmM5O7xe0G |
+| Refund replay | PASS | Same refund ID; COMPLETED |
+| Refund above remaining balance | PASS | HTTP 400; REFUND_AMOUNT_INVALID; requested refund exceeds available amount |
+| Payment/refund provider reconciliation | PASS | GET payment HTTP 200; refunded_money 100 USD cents; matching refund ID on original payment |
+| Fictional customer creation | PASS | HTTP 200; customer RWCT110MREFC7HXTQTZ52HW10C, StudioFlowIQ Sandbox QA; no real contact details |
+| Simulated card storage | PASS | HTTP 200; enabled VISA ending 5858 attached to the fictional customer |
+| Card creation replay | NOT TESTED | Browser request timed out after invocation; outcome not observed, no success inferred |
+
+The saved screenshot `studioflowiq-square-sandbox-refund.jpg` shows HTTP 200 and the completed refund. No secret token is included in the screenshot or this report.
+
+### Remaining sandbox/device blockers
+
+| Priority | Requirement | Status and next dependency |
+|---|---|---|
+| P0 release gate | Native apps → isolated backend → Square → webhook reconciliation | NOT TESTED. Only the production backend was available; native candidates point to studioflowiq.com. A separate non-production backend, sandbox configuration and fictional accounts across two studios are needed. Production payment configuration was not switched. |
+| P0 release gate | Hosted checkout, recurring billing/renewals, failed renewal recovery, receipts and app balances | NOT TESTED with the provider. Direct payment tests do not verify hosted checkout or subscriptions. |
+| P0 release gate | Scenarios A–E, all four Staff roles, member/studio isolation across devices | NOT TESTED end to end. Handler/fixture coverage is recorded separately. |
+| P1 | Square Web Payments SDK native frame entry/tokenization, card update, permission and SCA failures | NOT TESTED. Passing a test nonce to Cards API is not SDK tokenization proof. |
+| P1 | APNs credentials and actual delivery, iPhone accessibility/performance and recordings | NOT TESTED / outstanding; no connected iPhone is available in this environment. |
+
+Account-deletion operations, dependency advisories, incomplete staff feature parity and App Store disclosures remain open as described above. No real financial transaction or production record mutation was performed by these tests.
