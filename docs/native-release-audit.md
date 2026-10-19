@@ -27,7 +27,7 @@ Release assets: distinct existing bundle/Expo/App Store identities retained; 102
 - Shared backend TypeScript and regression tests executed, including actual route handlers with local SQL fixtures and mocked external providers.
 - Security tests verify every staff role retains its server tenant/role, malformed/expired/disabled sessions fail, wrong origins fail, member ticket isolation, catalog-priced checkout, retry idempotency, refund permissions/limits, and ownership of renewal cancellation.
 - The previous roster checkout hook mock was fixed; the covered roster checkout tests now execute successfully.
-- Config introspection confirms secure storage/camera plugins and APNs entitlement generation. Store builds need matching push-enabled provisioning.
+- Config introspection confirms secure storage/camera plugins and APNs entitlement generation. Both signed candidates now have matching push-enabled provisioning.
 - No production database records were changed by tests. Production provider requests were not exercised.
 
 ## Workflow acceptance evidence
@@ -56,6 +56,7 @@ PASS below is limited to the executed scope in the evidence column. No device jo
 | P0 release gate | New signed builds install and run on an iPhone | NOT TESTED |
 | P0 release gate | Square sandbox tokenization, purchase/decline/retry/refund/renewal reconciliation | NOT TESTED; mocked-provider checks do not establish this |
 | P0 release gate | Complete scenarios A–E on Member and all Staff roles across two studios | NOT TESTED on devices |
+| P1 | Dependency advisory remediation/reachability review | FAIL: 16 high and 7 moderate propagated package findings; evidence attached |
 | P1 | APNs sending credential and actual push delivery including disabled permissions | NOT CONFIGURED / NOT TESTED; provisioning repaired |
 | P1 | VoiceOver, 200% Dynamic Type, small/large iPhone layouts, photo/camera denial and back gestures | NOT TESTED on devices |
 | P1 | Cold/warm launch, memory, crash, slow/offline network and background recovery measurements | NOT TESTED on devices |
@@ -103,9 +104,40 @@ Expo credential pages showed no APNs push sending key configured for either app.
 
 The first successful signed Staff 1.0.0 (6) and Members 1.0.0 (4) archives proved the provisioning repair. Expo Doctor still reported 20/21 checks because Expo 57.0.27, expo-notifications 57.0.22 and TypeScript 5.9.3 differed from its supported versions. These were updated to Expo 57.0.30, expo-notifications 57.0.23 and TypeScript 6.0.3 with the lockfile refreshed. Both variant TypeScript checks and 12/12 tests passed again, and both new iOS Hermes exports passed (816 modules, 2 MB). Local `expo install --check` reported dependencies up to date.
 
-Updated candidate sources: Staff 190d59ade60bae62671eef84e9f4aff0cc14c417; Members 64e36a5d3be0ebe3e0b05d8f22c0c9a59761a025. Their new cloud builds are ee900f8e-86a2-462e-936e-0cd57a5d59b9 and 28d64a29-7bff-446c-ba57-b0014da2ac68 respectively. Staff cloud Expo Doctor now passes 21/21 checks. Final signed-build outcomes are recorded after completion.
+Updated candidate sources: Staff 190d59ade60bae62671eef84e9f4aff0cc14c417; Members 64e36a5d3be0ebe3e0b05d8f22c0c9a59761a025. Their new cloud builds are ee900f8e-86a2-462e-936e-0cd57a5d59b9 and 28d64a29-7bff-446c-ba57-b0014da2ac68 respectively. Both cloud Expo Doctor runs passed 21/21 checks; both signed-build outcomes are recorded below.
 
 
 ### Performance evidence boundary
 
 No cold/warm launch duration, frame-rate, memory/leak, crash-rate, cellular-latency or battery baseline was measured. API timeouts, lifecycle refresh, private-screen overlays and native controls were implemented, but no quantified performance improvement is claimed. Native back gestures, transition quality, Dynamic Type, VoiceOver and visual quality remain device acceptance items.
+
+
+### App Review policy checkpoint
+
+Apple's current App Review Guidelines were checked on 19 October 2026 (https://developer.apple.com/app-store/review/guidelines/). Sections 4.2 and 4.2.2 require useful app behavior beyond a repackaged website; implemented native screens reduce that risk, but device acceptance is still required. Section 3.1.3(e) permits non-IAP payment for physical goods and services consumed outside the app. In-person studio classes and physical retail appear to fit that category; this is an inference, and the actual release catalog must be reviewed. Digital content or group services consumed within the app require separate classification. Section 5.1.1(v) requires in-app account deletion when account creation is supported. A queued request alone does not establish completed deletion processing or compliant retention handling; this remains a submission blocker.
+
+`npm audit --omit=dev --json` completed with exit 1: 23 affected-package findings (16 high, 7 moderate, 0 critical), propagated from three advisory roots. Full evidence is saved in `docs/native-dependency-audit.json`. Dependency-security acceptance is FAIL for both candidates pending remediation or documented reachability/risk review. The affected paths mainly involve Expo CLI, Metro and Xcode project tooling; runtime exploitability has not been established or ruled out.
+
+| Priority | Advisory root | Finding | Disposition |
+|---|---|---|---|
+| P1 | braces <=3.0.3; GHSA-vfj7-8cjw-p6xm | Deeply nested patterns can exhaust the Node stack | No compatible patched release verified; build-input exposure/reachability review outstanding |
+| P1 | node-forge <=1.4.0; GHSA-86w9-cpqp-85rv | RSA signature-verification validation flaw | No compatible patched release verified; signing-tool reachability review outstanding |
+| P1 | uuid <11.1.1; GHSA-w5hq-g745-h8pq | Buffer bounds checks in v3/v5/v6 | Transitive Xcode dependency; compatible upgrade or usage review outstanding |
+
+Automatic force-fixes were not applied: npm proposed incompatible Expo 44 / React Native 0.72 downgrades. The current SDK-compatible candidates remain available for controlled device testing, but this security gate remains open.
+
+
+## Final signed candidate checkpoint
+
+| App | Candidate | Source | Signed IPA | Expo Doctor | App Store recommendation |
+|---|---|---|---|---|---|
+| Staff | 1.0.0 (7) | 190d59ade60bae62671eef84e9f4aff0cc14c417 | PASS — cloud archive/sign/export succeeded, 4m 29s build time | PASS — 21/21 | NO-GO |
+| Members | 1.0.0 (5) | 64e36a5d3be0ebe3e0b05d8f22c0c9a59761a025 | PASS — cloud archive/sign/export succeeded, 4m 26s build time | PASS — 21/21 | NO-GO |
+
+Verified build detail pages:
+- Staff: https://expo.dev/accounts/studioflowiq-team/projects/studioflowiq-staff/builds/ee900f8e-86a2-462e-936e-0cd57a5d59b9
+- Members: https://expo.dev/accounts/studioflowiq-team/projects/studioflowiq-membersstudioflowiq-members/builds/28d64a29-7bff-446c-ba57-b0014da2ac68
+
+Successful signed packaging does not establish successful app execution. Neither final candidate has been installed on a physical iPhone, uploaded to TestFlight, or submitted for Apple review by this run. Automatic submission was OFF for every new build. Documentation-only commits after the candidate sources do not change their application code.
+
+Outstanding requirements: authorized non-production member/staff accounts across two studios and all four staff roles; Square sandbox merchant/credentials and safe provider-webhook test access; a connected iPhone or tester-provided executed evidence/recordings; APNs sending-key setup; deletion/retention operations and privacy-disclosure decisions; staff feature-parity completion; dependency advisory remediation or documented security disposition; final independent review and release approval for each app. No real payments, account deletions, or production membership changes were performed by the automated tests.
