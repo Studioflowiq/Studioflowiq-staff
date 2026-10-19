@@ -6,14 +6,14 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "studioflowiq",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.studioflowiq.app",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
-        "NSCameraUsageDescription": "Use the camera to scan member check-in passes and add profile photos.",
-        "NSPhotoLibraryUsageDescription": "Choose a photo for your studio profile."
+        "NSCameraUsageDescription": "Scan a member\u2019s StudioFlowIQ check-in pass using the camera.",
+        "NSPhotoLibraryUsageDescription": "Choose a photo for your StudioFlowIQ profile."
       }
     },
     "android": {
@@ -27,7 +27,24 @@
       ]
     },
     "plugins": [
-      "expo-notifications"
+      "expo-notifications",
+      "expo-secure-store",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow StudioFlowIQ to scan member check-in passes.",
+          "recordAudioAndroid": false,
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Choose a photo for your StudioFlowIQ profile.",
+          "cameraPermission": "Take a photo for your StudioFlowIQ profile.",
+          "microphonePermission": false
+        }
+      ]
     ],
     "extra": {
       "supportEmail": "hello@studioflowiq.com",
