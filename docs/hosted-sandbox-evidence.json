@@ -1,0 +1,219 @@
+{
+  "date": "2026-10-19",
+  "environment": "isolated-private-sandbox",
+  "origin": "https://studioflowiq-sandbox.fiitlyfe2021.chatgpt.site",
+  "source": "a7abbccda5bb7b708fda18e0ae82ee7d81052092",
+  "scope": "Hosted API checks, not native iPhone journeys or provider-backed integration",
+  "summary": {
+    "pass": 39,
+    "fail": 0
+  },
+  "results": [
+    {
+      "test": "Login qa-studio-a owner",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Login qa-studio-a manager",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Login qa-studio-a coach",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Login qa-studio-a front_desk",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Login qa-studio-b owner",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Login qa-studio-b manager",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Login qa-studio-b coach",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Login qa-studio-b front_desk",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-a owner",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-a manager",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-a coach",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-a front_desk",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-b owner",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-b manager",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-b coach",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-b front_desk",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Member reads correct studio/profile",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Member profile persists",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Member books capacity-one class",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Second member joins full-class waitlist",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Duplicate booking rejected",
+      "result": "PASS",
+      "evidence": "HTTP 400"
+    },
+    {
+      "test": "Cancellation promotes oldest waiter",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Other studio cannot cancel reservation",
+      "result": "PASS",
+      "evidence": "HTTP 400"
+    },
+    {
+      "test": "Manager check-in visible to member",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Expired member booking denied",
+      "result": "PASS",
+      "evidence": "HTTP 400"
+    },
+    {
+      "test": "Cross-studio class access denied",
+      "result": "PASS",
+      "evidence": "HTTP 400"
+    },
+    {
+      "test": "Wrong-origin profile mutation denied",
+      "result": "PASS",
+      "evidence": "HTTP 403"
+    },
+    {
+      "test": "coach cannot refund through API",
+      "result": "PASS",
+      "evidence": "HTTP 403"
+    },
+    {
+      "test": "front_desk cannot refund through API",
+      "result": "PASS",
+      "evidence": "HTTP 403"
+    },
+    {
+      "test": "Member support ticket persists correct studio",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Other studio cannot see member ticket",
+      "result": "PASS",
+      "evidence": ""
+    },
+    {
+      "test": "Member correspondence remains in same ticket",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Different member cannot reply to ticket",
+      "result": "PASS",
+      "evidence": "HTTP 400"
+    },
+    {
+      "test": "Staff logout revokes bearer session",
+      "result": "PASS",
+      "evidence": "HTTP 401"
+    },
+    {
+      "test": "Supplemental manager login",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Manager reply visible on original member ticket",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Cross-studio support isolation with successful read",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Class-pack booking persists",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Class-pack early cancellation persists",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    }
+  ],
+  "classPackAvailableCredits": {
+    "initial": 8,
+    "reserved": 7,
+    "afterEarlyCancellation": 8
+  },
+  "notTested": [
+    "Square through isolated backend and webhook reconciliation",
+    "Hosted subscription renewals and retail checkout",
+    "Native iPhone execution, accessibility, performance and recordings",
+    "APNs delivery"
+  ]
+}

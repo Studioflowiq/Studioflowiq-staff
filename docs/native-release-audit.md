@@ -36,15 +36,15 @@ PASS below is limited to the executed scope in the evidence column. No device jo
 
 | Workflow | Members | Staff | Evidence / limit |
 |---|---|---|---|
-| Auth, expiry and tenant/role isolation | NOT TESTED end to end | NOT TESTED end to end | Local backend security-handler tests PASS for Owner, Manager, Coach and Front Desk; native API tests PASS |
+| Auth, expiry and tenant/role isolation | NOT TESTED end to end | NOT TESTED end to end | Hosted login and role/tenant checks PASS for all four roles across two studios; native device sign-in NOT TESTED |
 | Onboarding/profile/photo editing | NOT TESTED | NOT TESTED | Requires signed app on iPhone and authorized test accounts |
-| Schedule, booking and cancellation | NOT TESTED | NOT TESTED | Native date/time/domain mapping unit tests PASS; real cross-app mutation not executed |
-| Capacity, balances, waitlist promotion | NOT TESTED | NOT TESTED | No device/staging promotion scenario executed |
+| Schedule, booking and cancellation | NOT TESTED | NOT TESTED | Hosted API booking/cancellation and cross-client data consistency PASS; native device interactions NOT TESTED |
+| Capacity, balances, waitlist promotion | NOT TESTED | NOT TESTED | Hosted API waitlist promotion and class-pack reservation hold/release PASS; native device and purchased-credit journeys NOT TESTED |
 | QR generation/scanning/check-in | NOT TESTED | NOT TESTED | QR parser unit tests PASS; camera/device journey outstanding |
 | Payment card tokenization, purchase, decline, retry | NOT TESTED | NOT TESTED | Local server price/idempotency tests PASS with provider mocks; direct Square sandbox payment/card tests PASS (see checkpoint); app tokenization/journey NOT TESTED |
 | Refunds and recurring cancellation | NOT TESTED | NOT TESTED | Local ownership/role/amount tests PASS; direct Square sandbox refund/payment reconciliation PASS; app/backend webhook reconciliation and recurring cancellation NOT TESTED |
 | Retail POS and reporting | NOT TESTED | NOT TESTED | No processor-backed POS transaction executed |
-| Support correspondence across apps/studios | NOT TESTED | NOT TESTED | Local member ticket isolation tests PASS; real user exchange outstanding |
+| Support correspondence across apps/studios | NOT TESTED | NOT TESTED | Hosted member creation, manager response and member thread visibility PASS; cross-member/studio denial PASS; native interaction NOT TESTED |
 | Push receipt, denied permission, foreground/background | NOT TESTED | NOT TESTED | Registration/dispatch implemented; no APNs sending key bound and no device receipt |
 | Account deletion | NOT TESTED | NOT TESTED | Request queue implemented; actual processing/retention acceptance outstanding |
 | Offline, slow network, accessibility and performance | NOT TESTED | NOT TESTED | Physical-device measurements and recordings unavailable |
@@ -191,3 +191,22 @@ The saved screenshot `studioflowiq-square-sandbox-refund.jpg` shows HTTP 200 and
 | P1 | APNs credentials and actual delivery, iPhone accessibility/performance and recordings | NOT TESTED / outstanding; no connected iPhone is available in this environment. |
 
 Account-deletion operations, dependency advisories, incomplete staff feature parity and App Store disclosures remain open as described above. No real financial transaction or production record mutation was performed by these tests.
+
+
+## Isolated hosted QA checkpoint — 19 October 2026
+
+A separate owner-private backend was deployed at https://studioflowiq-sandbox.fiitlyfe2021.chatgpt.site from source a7abbccda5bb7b708fda18e0ae82ee7d81052092. It has a separate D1 database and R2 storage, a new payment-encryption key, no production Square or mail credentials, and a Square transport that rejects every non-sandbox configuration. A short-lived, origin-bound, secret-protected, one-time initialization endpoint seeded two fictional studios, eight staff accounts (Owner, Manager, Coach and Front Desk in each studio) and ten fictional members. No production data was copied.
+
+Three setup/security tests and sandbox backend TypeScript passed. The deployed private backend was exercised over HTTPS using documented Sites service access without embedding that credential in either native app. **39 hosted API checks passed, zero failed**; the exact results are in `docs/hosted-sandbox-evidence.json`. These are service-layer checks, not interactions executed on an iPhone.
+
+Covered: all eight staff logins; role/tenant preservation for all roles; member studio/profile reads and persistent edits; booking, full-class waitlisting, duplicate rejection, cancellation and FIFO promotion; manager check-in visible in the member data; expired member, cross-studio and wrong-origin denials; Coach/Front Desk refund denials; support creation, persistent correspondence, manager reply visible on the same member ticket and cross-member/studio isolation; logout revocation. The class-pack available balance was 8 before reservation, 7 while reserved and 8 after early cancellation. This verifies reservation holds and release, not a purchased pack or attended-class deduction.
+
+Both native variants now have explicit sandbox TestFlight build profiles. They permit only the known production and sandbox origins, reject invitations for the other environment, store sandbox sessions under a separate SecureStore key, and show a visible sandbox label. Each variant passed TypeScript, **14/14 unit tests**, and an iOS Hermes export after these changes.
+
+- Staff sandbox source: 8a8ce0ac684a7e18e3a461d799673c2608ac6f93; cloud build f8de7760-edd3-4e9c-9a08-6b9ed3800d57.
+- Members sandbox source: 6c12a21a664f4c9041168c8e2cf32960397d7996; cloud build 7f6c1ac3-3722-4f57-8c59-3e29b37947ee.
+- Cloud build requests were accepted with automatic submission OFF. Build outcomes require their own verification. Neither has been uploaded to TestFlight at this checkpoint.
+
+The Sites service remains owner-private. Native TestFlight clients and Square webhooks cannot use the private service credential; it must never be bundled in an app. A separately approved public network audience with existing account/API authentication is required for those clients. Square sandbox configuration and webhook credentials still need to be connected to this new backend; direct Developer Console token tests do not establish OAuth scope or end-to-end reconciliation.
+
+Scenarios A and D (purchases/retail reconciliation), provider-backed renewals and payment recovery, push receipt, native accessibility/performance, recordings and full on-device scenarios remain NOT TESTED. APNs sending credentials are still absent. Member and Staff remain independently NO-GO for App Store launch. TestFlight distribution remains pending the applicable checks and external access setup.
