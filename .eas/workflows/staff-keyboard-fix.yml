@@ -1,4 +1,4 @@
-name: Staff keyboard fix
+name: staff keyboard build only
 jobs:
   build_ios:
     type: build
@@ -6,12 +6,4 @@ jobs:
       EXPO_PUBLIC_APP_VARIANT: staff
     params:
       platform: ios
-      profile: staff-testflight
-  submit_ios:
-    needs: [build_ios]
-    type: submit
-    env:
-      EXPO_PUBLIC_APP_VARIANT: staff
-    params:
-      build_id: ${{ needs.build_ios.outputs.build_id }}
       profile: staff-testflight
