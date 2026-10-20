@@ -1,0 +1,31 @@
+appId: com.studioflowiq.staff
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    id: field-studio-email
+- waitForAnimationToEnd
+- inputText: keyboard.probe@example.com
+- assertVisible: keyboard.probe@example.com
+- takeScreenshot: email-entry
+- tapOn: Continue
+- tapOn:
+    id: field-password
+- waitForAnimationToEnd
+- inputText: SimulatorOnly1234
+- takeScreenshot: password-entry
+- tapOn: Change email
+- tapOn:
+    id: field-studio-email
+- waitForAnimationToEnd
+- inputText: "777"
+- assertVisible:
+    id: field-studio-email
+    text: ".*777.*"
+- takeScreenshot: email-return
+- tapOn: Continue
+- tapOn:
+    id: field-password
+- waitForAnimationToEnd
+- inputText: SecondTyping1234
+- takeScreenshot: password-return
