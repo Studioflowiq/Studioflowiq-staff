@@ -44,6 +44,14 @@
         "EXPO_PUBLIC_APP_VARIANT": "member",
         "EXPO_PUBLIC_API_ORIGIN": "https://studioflowiq-sandbox.fiitlyfe2021.chatgpt.site"
       }
+    },
+    "staff-ios-simulator": {
+      "extends": "staff-testflight",
+      "distribution": "internal",
+      "autoIncrement": false,
+      "ios": {
+        "simulator": true
+      }
     }
   },
   "submit": {
