@@ -1,0 +1,32 @@
+name: Verify and upload Staff 16 keyboard fix
+jobs:
+  simulator:
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: staff
+    params:
+      platform: ios
+      profile: staff-ios-simulator
+  typing:
+    needs: [simulator]
+    type: maestro
+    params:
+      build_id: ${{ needs.simulator.outputs.build_id }}
+      flow_path: .maestro/login-staged.yml
+      record_screen: true
+  release:
+    needs: [typing]
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: staff
+    params:
+      platform: ios
+      profile: staff-testflight
+  upload:
+    needs: [release]
+    type: submit
+    env:
+      EXPO_PUBLIC_APP_VARIANT: staff
+    params:
+      build_id: ${{ needs.release.outputs.build_id }}
+      profile: staff-testflight
