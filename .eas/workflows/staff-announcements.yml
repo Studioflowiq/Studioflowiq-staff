@@ -1,0 +1,17 @@
+name: Staff 17 announcement duration
+jobs:
+  release:
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: staff
+    params:
+      platform: ios
+      profile: staff-testflight
+  upload:
+    needs: [release]
+    type: submit
+    env:
+      EXPO_PUBLIC_APP_VARIANT: staff
+    params:
+      build_id: ${{ needs.release.outputs.build_id }}
+      profile: staff-testflight
