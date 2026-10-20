@@ -6,29 +6,30 @@ appId: com.studioflowiq.members
     element:
       id: field-member-email
     direction: DOWN
+    centerElement: true
 - tapOn:
     id: field-member-email
-- waitForAnimationToEnd
 - inputText: keyboard.probe@example.com
 - assertVisible: keyboard.probe@example.com
 - takeScreenshot: email-typed
-- pressKey: Enter
-- tapOn:
-    id: field-member-email
-- waitForAnimationToEnd
-- longPressOn:
-    id: field-member-email
-- tapOn: Select All
-- eraseText: 1
-- inputText: second.probe@example.com
-- assertVisible: second.probe@example.com
-- pressKey: Enter
 - scrollUntilVisible:
     element:
       id: field-password
     direction: DOWN
+    centerElement: true
 - tapOn:
     id: field-password
-- waitForAnimationToEnd
 - inputText: SimulatorOnly1234
 - takeScreenshot: password-typed
+- scrollUntilVisible:
+    element:
+      id: field-member-email
+    direction: UP
+    centerElement: true
+- tapOn:
+    id: field-member-email
+- inputText: "777"
+- assertVisible:
+    id: field-member-email
+    text: ".*777.*"
+- takeScreenshot: email-refocused
