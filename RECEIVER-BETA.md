@@ -1,0 +1,7 @@
+# Receiver beta
+
+Native local module AV8Receiver listens on foreground Wi-Fi UDP port 4000. Local Network permission is required. Pro instrument access and trusted AV8 instrument URLs gate commands. Navigation, switching tools, backgrounding and revoked Pro access stop the listener. Packets remain on device and are delivered to the web GDL90 decoder; traffic/weather/GPS/pressure are not sourced from this module.
+
+Ground testing: install the new TestFlight build; sign in online and download AHRS/offline assets. In Stratus Horizon Pro enable Open ADS-B Mode and align/calibrate Stratus 3. Join its Wi-Fi, open AV8 AHRS, select receiver and connect, allowing Local Network. Diagnostics must show actual packets and supported AHRS before attitude appears. Compare both bank directions and nose up/down, rotate the phone independently, then test power/Wi-Fi loss and reconnect. Attitude must clear after one second without a valid sample. Receiver data never falls back to phone IMU. Other receiver models, proprietary AHRS formats, broadcast delivery and receiver-specific handshakes require hardware verification. The web decoder currently supports ForeFlight 0x65/0x01 AHRS only. Do not claim blanket Stratus 3-or-newer compatibility or flight validation.
+
+EAS workflow receiver-beta.yml builds with existing production signing and uploads only to TestFlight. Physical receiver testing remains required after installation.

@@ -16,7 +16,8 @@
         "NSLocationWhenInUseUsageDescription": "Show your position when you choose a location-based AV8 FLY tool.",
         "NSCameraUsageDescription": "Add an aircraft or profile photo when you choose to take a picture.",
         "NSPhotoLibraryUsageDescription": "Choose aircraft and profile photos to upload.",
-        "NSMotionUsageDescription": "Use device motion and the barometer when you enable AV8's experimental attitude or measured ambient pressure display."
+        "NSMotionUsageDescription": "Use device motion and the barometer when you enable AV8's experimental attitude or measured ambient pressure display.",
+        "NSLocalNetworkUsageDescription": "Receive supplemental GDL90 attitude from your Wi-Fi ADS-B receiver when you enable the AV8 receiver beta."
       }
     },
     "extra": {

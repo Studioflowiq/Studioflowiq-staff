@@ -8,8 +8,8 @@ test('native menu follows visible session, fails closed for Member, and ignores 
  control('All features').props.onPress();assert.equal(scripts.length,1);
  const receiver=nodes.find(n=>n.type==='WebView'&&n.props.ref===refs[2]).props.onMessage;const reply=d=>receiver({nativeEvent:{url:'https://av8fly.com/account',data:JSON.stringify(d)}});
  const pro={authenticated:true,email:'adamchrist007@icloud.com',plan:'pro',features:{ahrs:true,performance:true}};
- let posted;vm.runInNewContext(scripts[0],{fetch:async(path,options)=>{assert.equal(path,'/flight-beta/status');assert.equal(options.credentials,'same-origin');return {ok:true,json:async()=>pro}},window:{ReactNativeWebView:{postMessage:s=>posted=JSON.parse(s)}}});await new Promise(setImmediate);reply(posted);render();assert.equal(states[0],true);assert(nodes.some(n=>n.children?.includes('Performance')));
- control('All features').props.onPress();reply({type:'av8-tool-access',id:2,status:{authenticated:true,email:'member@av8fly.com',plan:'plus',features:{ahrs:false,performance:false}}});render();assert.equal(states[0],false);assert(!nodes.some(n=>n.type==='Text'&&n.children?.includes('Performance')));
- reply({type:'av8-tool-access',id:1,status:pro});assert.equal(states[0],false);
- receiver({nativeEvent:{url:'https://evil.example',data:JSON.stringify({type:'av8-tool-access',id:2,status:pro})}});assert.equal(states[0],false);
+ let posted;vm.runInNewContext(scripts[0],{fetch:async(path,options)=>{assert.equal(path,'/flight-beta/status');assert.equal(options.credentials,'same-origin');return {ok:true,json:async()=>pro}},window:{ReactNativeWebView:{postMessage:s=>posted=JSON.parse(s)}}});await new Promise(setImmediate);reply(posted);render();assert.equal(states[1],true);assert(nodes.some(n=>n.children?.includes('Performance')));
+ control('All features').props.onPress();reply({type:'av8-tool-access',id:2,status:{authenticated:true,email:'member@av8fly.com',plan:'plus',features:{ahrs:false,performance:false}}});render();assert.equal(states[1],false);assert(!nodes.some(n=>n.type==='Text'&&n.children?.includes('Performance')));
+ reply({type:'av8-tool-access',id:1,status:pro});assert.equal(states[1],false);
+ receiver({nativeEvent:{url:'https://evil.example',data:JSON.stringify({type:'av8-tool-access',id:2,status:pro})}});assert.equal(states[1],false);
 });

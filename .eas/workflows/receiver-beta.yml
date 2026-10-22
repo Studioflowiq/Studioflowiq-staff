@@ -1,0 +1,17 @@
+name: AV8 FLY GDL90 receiver beta
+on:
+  workflow_dispatch: {}
+jobs:
+  build_ios:
+    name: Build AV8 receiver beta for iOS
+    type: build
+    params:
+      platform: ios
+      profile: production
+  submit_ios:
+    name: Upload receiver beta to TestFlight
+    needs: [build_ios]
+    type: submit
+    params:
+      build_id: ${{ needs.build_ios.outputs.build_id }}
+      profile: production
