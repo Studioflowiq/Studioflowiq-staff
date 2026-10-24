@@ -1,0 +1,11 @@
+name: Upload staff invitation update
+jobs:
+  upload:
+    name: Upload completed staff build to TestFlight
+    type: submit
+    env:
+      EXPO_PUBLIC_APP_VARIANT: staff
+    params:
+      build_id: 5c2cce2e-c52f-4106-96b7-e2f3b93ba70b
+      profile: staff-testflight
+      groups: ['StudioFlowIQ Team']

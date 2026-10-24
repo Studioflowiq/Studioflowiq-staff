@@ -1,0 +1,9 @@
+name: Upload Staff 15 AutoFill workaround
+jobs:
+  upload:
+    type: submit
+    env:
+      EXPO_PUBLIC_APP_VARIANT: staff
+    params:
+      build_id: f34a02bf-4af1-4ae4-8a63-d51e1d346c01
+      profile: staff-testflight

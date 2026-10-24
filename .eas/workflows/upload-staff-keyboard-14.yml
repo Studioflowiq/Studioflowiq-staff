@@ -1,0 +1,9 @@
+name: Upload Staff 14 keyboard correction
+jobs:
+  upload:
+    type: submit
+    env:
+      EXPO_PUBLIC_APP_VARIANT: staff
+    params:
+      build_id: ca561112-4143-43a4-be34-b7868211dd2c
+      profile: staff-testflight

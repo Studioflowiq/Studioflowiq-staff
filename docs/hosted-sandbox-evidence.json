@@ -1,0 +1,347 @@
+{
+  "date": "2026-10-19",
+  "environment": "isolated-private-sandbox",
+  "origin": "https://studioflowiq-sandbox.fiitlyfe2021.chatgpt.site",
+  "source": "a7abbccda5bb7b708fda18e0ae82ee7d81052092",
+  "scope": "Hosted API checks, not native iPhone journeys or provider-backed integration",
+  "summary": {
+    "pass": 39,
+    "fail": 0
+  },
+  "results": [
+    {
+      "test": "Login qa-studio-a owner",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Login qa-studio-a manager",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Login qa-studio-a coach",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Login qa-studio-a front_desk",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Login qa-studio-b owner",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Login qa-studio-b manager",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Login qa-studio-b coach",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Login qa-studio-b front_desk",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-a owner",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-a manager",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-a coach",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-a front_desk",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-b owner",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-b manager",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-b coach",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Role and tenant preserved qa-studio-b front_desk",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Member reads correct studio/profile",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Member profile persists",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Member books capacity-one class",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Second member joins full-class waitlist",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Duplicate booking rejected",
+      "result": "PASS",
+      "evidence": "HTTP 400"
+    },
+    {
+      "test": "Cancellation promotes oldest waiter",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Other studio cannot cancel reservation",
+      "result": "PASS",
+      "evidence": "HTTP 400"
+    },
+    {
+      "test": "Manager check-in visible to member",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Expired member booking denied",
+      "result": "PASS",
+      "evidence": "HTTP 400"
+    },
+    {
+      "test": "Cross-studio class access denied",
+      "result": "PASS",
+      "evidence": "HTTP 400"
+    },
+    {
+      "test": "Wrong-origin profile mutation denied",
+      "result": "PASS",
+      "evidence": "HTTP 403"
+    },
+    {
+      "test": "coach cannot refund through API",
+      "result": "PASS",
+      "evidence": "HTTP 403"
+    },
+    {
+      "test": "front_desk cannot refund through API",
+      "result": "PASS",
+      "evidence": "HTTP 403"
+    },
+    {
+      "test": "Member support ticket persists correct studio",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Other studio cannot see member ticket",
+      "result": "PASS",
+      "evidence": ""
+    },
+    {
+      "test": "Member correspondence remains in same ticket",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Different member cannot reply to ticket",
+      "result": "PASS",
+      "evidence": "HTTP 400"
+    },
+    {
+      "test": "Staff logout revokes bearer session",
+      "result": "PASS",
+      "evidence": "HTTP 401"
+    },
+    {
+      "test": "Supplemental manager login",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Manager reply visible on original member ticket",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Cross-studio support isolation with successful read",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Class-pack booking persists",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    },
+    {
+      "test": "Class-pack early cancellation persists",
+      "result": "PASS",
+      "evidence": "HTTP 200"
+    }
+  ],
+  "classPackAvailableCredits": {
+    "initial": 8,
+    "reserved": 7,
+    "afterEarlyCancellation": 8
+  },
+  "notTested": [
+    "Square through isolated backend and webhook reconciliation",
+    "Hosted subscription renewals and retail checkout",
+    "Native iPhone execution, accessibility, performance and recordings",
+    "APNs delivery"
+  ],
+  "publicAccessRecheck": {
+    "date": "2026-10-19",
+    "audience": "public (explicitly approved)",
+    "pythonClient": {
+      "result": "NOT TESTED",
+      "reason": "Cloudflare HTTP 403, text/plain error code 1010 prevented requests from reaching app handlers. All apparent denial passes and failures from this transport-blocked run are superseded."
+    },
+    "observedReads": [
+      {
+        "client": "browser",
+        "path": "/api/auth",
+        "result": "PASS",
+        "evidence": "authenticated:false"
+      },
+      {
+        "client": "browser",
+        "path": "/api/member",
+        "result": "PASS",
+        "evidence": "Private member link required; no member data returned"
+      },
+      {
+        "client": "curl",
+        "path": "/api/auth",
+        "result": "PASS",
+        "evidence": "HTTP 200 JSON authenticated:false"
+      },
+      {
+        "client": "curl",
+        "path": "/api/member",
+        "result": "PASS",
+        "evidence": "Private member link required; no member data returned"
+      }
+    ],
+    "nativeClientReachability": "NOT TESTED on iPhone",
+    "providerIntegration": "NOT TESTED; sandbox-token transfer blocked by automatic approval review"
+  },
+  "latestCheckpoint": {
+    "date": "2026-10-19",
+    "environment": "isolated-public-sandbox",
+    "backendSource": "18ecd864362dc194d3e92384248c592d98adf63a",
+    "backendVersion": 3,
+    "backendDeployment": "appgdep_6ad66ee173348191b83de9b1fa0f0538",
+    "native": {
+      "staff": {
+        "source": "748c2fc126fed05e9bdb81db4a91b0bda9bdbbb3",
+        "version": "1.0.0 (9)",
+        "build": "fbe6e334-da85-4c7d-9fd3-e4bc5a4ca42d",
+        "status": "signed build succeeded",
+        "doctor": "21/21"
+      },
+      "members": {
+        "source": "e468b85ab4488273694f29fdde008124abb15491",
+        "version": "1.0.0 (7)",
+        "build": "0af49404-0bfe-4b6e-b79d-7d1cd3986a68",
+        "status": "signed build succeeded",
+        "doctor": "21/21"
+      },
+      "unitTestsPerVariant": "15/15",
+      "typeScript": "PASS"
+    },
+    "tests": [
+      {
+        "workflow": "Actual backend sandbox card storage",
+        "result": "PASS",
+        "evidence": "POST /api/member/cards HTTP200; saved VISA5858; GET cards valid; sandbox nonce used, native tokenization NOT TESTED"
+      },
+      {
+        "workflow": "Backend-created Square checkout",
+        "result": "PASS",
+        "evidence": "HTTP200 link; Square Sandbox Testing Panel payment simulation succeeded, signed webhook updated checkout and staff/member ledgers"
+      },
+      {
+        "workflow": "Purchase request replay",
+        "result": "PASS",
+        "evidence": "HTTP200 same checkout ID and URL, no second checkout"
+      },
+      {
+        "workflow": "Backend refund and reconciliation after fix",
+        "result": "PASS",
+        "evidence": "checkout member_3da5fcb8-3e2f-41e6-badb-a2c5157ac740; payment UvDmJfGdxZXstqwEJKbiu3gox4SZY; refund UvDmJfGdxZXstqwEJKbiu3gox4SZY_1PL2sJ4Hw7AIdfxNUnpicEh1UTPJV1qCN0j3iweQmEW; HTTP200 pending then signed webhook; staff payment, retail order and member billing all Refunded"
+      },
+      {
+        "workflow": "Full local backend regression",
+        "result": "PASS",
+        "evidence": "38/38 groups including website TypeScript; provider mocks distinct from actual Square tests"
+      },
+      {
+        "workflow": "Partial/full refunds and duplicate/late payment notifications",
+        "result": "PASS",
+        "evidence": "new local regression reproduced Paid mismatch before fix and passes after fix"
+      },
+      {
+        "workflow": "Sandbox class-pack purchase",
+        "result": "NOT TESTED",
+        "evidence": "$80 checkout link created but payment not executed before browser service outage"
+      },
+      {
+        "workflow": "TestFlight delivery",
+        "result": "NOT TESTED",
+        "evidence": "Both GitHub builds requested with automatic EAS Submit and respective sandbox submit profiles; UI showed request processing. Browser service then timed out repeatedly, including reset. Acceptance, new build numbers, upload outcomes and Apple processing NOT VERIFIED."
+      }
+    ],
+    "limits": [
+      "No real charges or production data changes",
+      "No physical iPhone testing or recordings",
+      "Native SDK card tokenization, recurring provider billing, APNs receipt and OAuth grant flow NOT TESTED",
+      "The pre-fix first refunded QA checkout retains stale Paid billing/order status; no backfill performed. Fresh post-fix transaction reconciled correctly.",
+      "Failed checkout setup retry with same key remains blocked; P1 follow-up",
+      "Sandbox correction not yet promoted to production backend",
+      "Independent App Store recommendation: Staff NO-GO; Members NO-GO"
+    ],
+    "credentialHandling": "User-authorized temporary token transfer completed; token stored only in sandbox backend secret/encrypted settings; temporary copies deleted; no secrets in this evidence"
+  },
+  "testflightUploadConfirmation": {
+    "staff": {
+      "version": "1.0.0 (10)",
+      "submission": "c279357d-70f0-4832-bf12-5ae517a4dcf6",
+      "appleUploadId": "15a162dd-9061-493c-8894-096fb49d7e4b"
+    },
+    "members": {
+      "version": "1.0.0 (8)",
+      "submission": "f740f065-0055-47a8-a993-6169e0e50490",
+      "appleUploadId": "efccb3ad-dee0-42c1-83d5-ff9f974c1668"
+    },
+    "status": "PASS: both upload logs confirm completion",
+    "testerAvailability": "NOT VERIFIED: App Store Connect sign-in required",
+    "appReviewSubmitted": false
+  }
+}

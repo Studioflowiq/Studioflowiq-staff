@@ -1,0 +1,9 @@
+name: staff keyboard build only
+jobs:
+  build_ios:
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: staff
+    params:
+      platform: ios
+      profile: staff-testflight
