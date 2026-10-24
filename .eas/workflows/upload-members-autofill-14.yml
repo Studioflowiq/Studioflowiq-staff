@@ -1,0 +1,9 @@
+name: Upload Members 14 AutoFill workaround
+jobs:
+  upload:
+    type: submit
+    env:
+      EXPO_PUBLIC_APP_VARIANT: member
+    params:
+      build_id: d3e21079-3238-4140-af14-8408a8c8199a
+      profile: member-testflight

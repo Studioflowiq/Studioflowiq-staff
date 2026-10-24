@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {studioOverview} from '../native/dashboard.mjs';
+const records=[{id:'today',kind:'class',date:'2026-10-19'},{id:'other',kind:'class',date:'2026-10-20'},{kind:'member',status:'Active'},{kind:'member',status:'Cancelled'},{kind:'payment',status:'Paid',date:'2026-10-03',amount:99},{kind:'payment',status:'Refunded',date:'2026-10-04',amount:50},{kind:'payment',status:'Paid',date:'2026-09-30',amount:25},{kind:'payment',status:'Awaiting payment',date:'2026-10-03',amount:200}];
+const bookings=[{class_id:'today',status:'Checked in'},{classId:'other',status:'Checked in'},{classId:'today',status:'Booked'},{classId:'today',status:'Waitlist'}];
+const overview=permissions=>studioOverview(records,bookings,permissions,'2026-10-19');
+test('no permission exposes no overview records',()=>assert.deepEqual(overview([]),[]));
+test('schedule access does not expose member or financial totals',()=>assert.deepEqual(overview(['view_schedule']).map(m=>m.key),['bookings','attendance']));
+test('front desk financial access does not grant reports navigation',()=>{const m=overview(['view_members','view_payments']);assert.equal(m.find(m=>m.key==='members').value,'1');assert.equal(m.find(m=>m.key==='revenue').value,'$99.00');assert.equal(m.find(m=>m.key==='revenue').target,null)});
+test('attendance uses studio day and both backend booking ID formats',()=>assert.equal(overview(['view_schedule']).find(m=>m.key==='attendance').value,'1'));
+test('reports permission alone does not expose payments',()=>assert.equal(overview(['view_reports']).length,0));

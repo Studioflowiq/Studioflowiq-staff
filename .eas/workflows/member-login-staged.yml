@@ -1,0 +1,32 @@
+name: Verify and upload Members 15 keyboard fix
+jobs:
+  simulator:
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: member
+    params:
+      platform: ios
+      profile: member-ios-simulator
+  typing:
+    needs: [simulator]
+    type: maestro
+    params:
+      build_id: ${{ needs.simulator.outputs.build_id }}
+      flow_path: .maestro/login-staged.yml
+      record_screen: true
+  release:
+    needs: [typing]
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: member
+    params:
+      platform: ios
+      profile: member-testflight
+  upload:
+    needs: [release]
+    type: submit
+    env:
+      EXPO_PUBLIC_APP_VARIANT: member
+    params:
+      build_id: ${{ needs.release.outputs.build_id }}
+      profile: member-testflight

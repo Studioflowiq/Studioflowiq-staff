@@ -1,0 +1,9 @@
+name: member keyboard build only
+jobs:
+  build_ios:
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: member
+    params:
+      platform: ios
+      profile: member-testflight

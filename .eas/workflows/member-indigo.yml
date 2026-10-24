@@ -1,0 +1,17 @@
+name: Members 16 indigo theme
+jobs:
+  release:
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: member
+    params:
+      platform: ios
+      profile: member-testflight
+  upload:
+    needs: [release]
+    type: submit
+    env:
+      EXPO_PUBLIC_APP_VARIANT: member
+    params:
+      build_id: ${{ needs.release.outputs.build_id }}
+      profile: member-testflight

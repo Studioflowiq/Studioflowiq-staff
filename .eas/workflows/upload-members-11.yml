@@ -1,0 +1,11 @@
+name: Upload member invitation update
+jobs:
+  upload:
+    name: Upload completed member build to TestFlight
+    type: submit
+    env:
+      EXPO_PUBLIC_APP_VARIANT: member
+    params:
+      build_id: 86f3d29b-4feb-4c39-bacb-2703941bace8
+      profile: member-testflight
+      groups: ['Members Internal Testing']

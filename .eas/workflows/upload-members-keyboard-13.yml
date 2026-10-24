@@ -1,0 +1,9 @@
+name: Upload Members 13 keyboard correction
+jobs:
+  upload:
+    type: submit
+    env:
+      EXPO_PUBLIC_APP_VARIANT: member
+    params:
+      build_id: 3e147cc1-6a7a-4ff9-b040-adcebd708bd8
+      profile: member-testflight
