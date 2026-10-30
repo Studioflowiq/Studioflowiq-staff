@@ -10,6 +10,15 @@
       "ios": {
         "image": "latest"
       }
+    },
+    "ios-screenshots": {
+      "extends": "production",
+      "distribution": "internal",
+      "autoIncrement": false,
+      "ios": {
+        "simulator": true,
+        "resourceClass": "medium"
+      }
     }
   },
   "submit": {
