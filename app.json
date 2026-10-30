@@ -1,42 +1,38 @@
 {
   "expo": {
-    "name": "AV8 FLY",
-    "slug": "av8-flyav8fly",
-    "owner": "studioflowiq-team",
-    "version": "1.0.0",
+    "name": "VayHaven Management",
+    "slug": "vayhaven-management",
+    "version": "1.0.1",
+    "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "scheme": "av8fly",
-    "userInterfaceStyle": "dark",
+    "scheme": "vayhaven-management",
+    "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.av8fly.app",
-      "appleTeamId": "UCLH3R22ZQ",
+      "bundleIdentifier": "com.vayhaven.management",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
-        "NSLocationWhenInUseUsageDescription": "Show your position when you choose a location-based AV8 FLY tool.",
-        "NSCameraUsageDescription": "Add an aircraft or profile photo when you choose to take a picture.",
-        "NSPhotoLibraryUsageDescription": "Choose aircraft and profile photos to upload.",
-        "NSMotionUsageDescription": "Use device motion and the barometer when you enable AV8's experimental attitude or measured ambient pressure display.",
-        "NSLocalNetworkUsageDescription": "Receive supplemental GDL90 attitude from your Wi-Fi ADS-B receiver when you enable the AV8 receiver beta."
+        "NSCameraUsageDescription": "Take a photo for a property, work order or service request.",
+        "NSPhotoLibraryUsageDescription": "Attach photos to VayHaven property and service records."
       }
     },
-    "extra": {
-      "eas": {
-        "projectId": "940246bd-1415-4fbc-a4e6-c2c4511d83b9"
+    "android": {
+      "package": "com.vayhaven.management",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#07348f"
       },
-      "website": "https://av8fly.com"
+      "permissions": [
+        "android.permission.CAMERA"
+      ]
     },
     "plugins": [
-      "@react-native-community/datetimepicker",
-      "expo-sharing",
-      "expo-font",
-      "expo-iap",
-      [
-        "expo-sensors",
-        {
-          "motionPermission": "Use device motion and the barometer when you enable AV8's experimental attitude or measured ambient pressure display."
-        }
-      ]
-    ]
+      "./plugins/with-local-notifications.js",
+      "expo-notifications"
+    ],
+    "extra": {
+      "website": "https://vayhaven.com",
+      "appVariant": "management"
+    }
   }
 }

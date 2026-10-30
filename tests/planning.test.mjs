@@ -1,4 +1,0 @@
-import {test} from 'node:test';import assert from 'node:assert/strict';import {estimate,navigationKind} from '../lib/planning.mjs';
-test('round trip includes taxi per leg and fees once',()=>assert.deepEqual(estimate({distance:'120',speed:'120',rate:'150',taxi:'12',fees:'25',roundTrip:true}),{hours:2.4,cost:385}));
-test('invalid values never display bogus cost',()=>{for(const speed of ['0','-1','nope','Infinity'])assert.equal(estimate({distance:'120',speed,rate:'150',taxi:'10',fees:'0',roundTrip:false}),null)});
-test('website remains embedded, external links leave, unsafe protocols blocked',()=>{assert.equal(navigationKind('https://av8fly.com/login'),'internal');assert.equal(navigationKind('https://av8fly.com.evil.example/'),'external');for(const u of ['javascript:alert(1)','file:///etc/passwd','https://user:pass@av8fly.com'])assert.equal(navigationKind(u),'blocked')});

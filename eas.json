@@ -4,20 +4,102 @@
     "appVersionSource": "remote"
   },
   "build": {
-    "production": {
+    "management-testflight": {
       "distribution": "store",
       "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "management"
+      }
+    },
+    "management-preview": {
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "management"
+      },
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "guest-testflight": {
+      "distribution": "store",
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "guest"
+      }
+    },
+    "guest-preview": {
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "guest"
+      },
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "vendor-testflight": {
+      "distribution": "store",
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "vendor"
+      }
+    },
+    "vendor-preview": {
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "vendor"
+      },
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "management-screenshots": {
+      "extends": "management-testflight",
+      "distribution": "internal",
+      "autoIncrement": false,
       "ios": {
-        "image": "latest"
+        "simulator": true,
+        "resourceClass": "medium"
+      }
+    },
+    "guest-screenshots": {
+      "extends": "guest-testflight",
+      "distribution": "internal",
+      "autoIncrement": false,
+      "ios": {
+        "simulator": true,
+        "resourceClass": "medium"
+      }
+    },
+    "vendor-screenshots": {
+      "extends": "vendor-testflight",
+      "distribution": "internal",
+      "autoIncrement": false,
+      "ios": {
+        "simulator": true,
+        "resourceClass": "medium"
       }
     }
   },
   "submit": {
-    "production": {
+    "management-testflight": {
       "ios": {
-        "ascAppId": "6824047557",
+        "ascAppId": "6823149422",
         "appleTeamId": "UCLH3R22ZQ",
-        "bundleIdentifier": "com.av8fly.app"
+        "bundleIdentifier": "com.vayhaven.management"
+      }
+    },
+    "guest-testflight": {
+      "ios": {
+        "ascAppId": "6823152178",
+        "appleTeamId": "UCLH3R22ZQ",
+        "bundleIdentifier": "com.vayhaven.guest"
+      }
+    },
+    "vendor-testflight": {
+      "ios": {
+        "appleTeamId": "UCLH3R22ZQ",
+        "bundleIdentifier": "com.vayhaven.vendor",
+        "ascAppId": "6823986250"
       }
     }
   }

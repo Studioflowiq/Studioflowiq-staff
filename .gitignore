@@ -1,8 +1,13 @@
 node_modules/
 .expo/
 dist/
-*.p8
-*.p12
-*.mobileprovision
+ios/
+android/
+*.jks
+*.keystore
 credentials.json
-.env*
+
+dist-staff/
+dist-management/
+dist-guest/
+dist-vendor/
