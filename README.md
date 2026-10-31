@@ -1,5 +1,1 @@
-# StudioFlowIQ Staff
-
-Expo staff mobile client for https://studioflowiq.com.
-
-Build with the `staff-testflight` profile for iOS. Run `npm ci`, `npm run typecheck`, and `npm test` to validate.
+# FlytFlow iOS\nDedicated FlytFlow branch. Expo project 3f69d33a-614e-4b52-8800-bf673bd4803d. App Store Connect 6829290220. Bundle com.flytflow.app. Portal uses existing school permissions.\n
