@@ -23,6 +23,9 @@
         "projectId": "3f69d33a-614e-4b52-8800-bf673bd4803d"
       },
       "website": "https://flytflow.com"
-    }
+    },
+    "plugins": [
+      "./plugins/with-local-notifications"
+    ]
   }
 }
