@@ -1,0 +1,10 @@
+name: Submit approved AV8 FLY cleanup build 28
+on:
+  workflow_dispatch: {}
+jobs:
+  submit_ios:
+    name: Upload approved AV8 build 28 to Apple
+    type: submit
+    params:
+      build_id: f5032233-d7fb-4a93-987d-68a415ebd84c
+      profile: production
