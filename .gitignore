@@ -1,8 +1,8 @@
 node_modules/
 .expo/
 dist/
-*.p8
-*.p12
-*.mobileprovision
-credentials.json
 .env*
+credentials.json
+*.p12
+*.p8
+*.mobileprovision
