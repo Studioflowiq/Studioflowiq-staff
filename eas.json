@@ -10,6 +10,14 @@
       "ios": {
         "resourceClass": "m-medium"
       }
+    },
+    "screenshots": {
+      "distribution": "internal",
+      "ios": {
+        "simulator": true,
+        "resourceClass": "m-medium"
+      },
+      "environment": "production"
     }
   },
   "submit": {
