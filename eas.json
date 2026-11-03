@@ -1,1 +1,32 @@
-{"cli":{"version":">=16.0.0","appVersionSource":"remote"},"build":{"production":{"distribution":"store","autoIncrement":true,"ios":{"resourceClass":"m-medium"}}},"submit":{"production":{"ios":{"ascAppId":"6829929946","appleTeamId":"UCLH3R22ZQ","appleId":"hello@studioflowiq.com"}}}}
+{
+  "cli": {
+    "version": ">=16.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "production": {
+      "distribution": "store",
+      "autoIncrement": true,
+      "ios": {
+        "resourceClass": "m-medium"
+      }
+    },
+    "screenshots": {
+      "distribution": "internal",
+      "ios": {
+        "simulator": true,
+        "resourceClass": "m-medium"
+      },
+      "environment": "production"
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascAppId": "6829929946",
+        "appleTeamId": "UCLH3R22ZQ",
+        "appleId": "hello@studioflowiq.com"
+      }
+    }
+  }
+}
