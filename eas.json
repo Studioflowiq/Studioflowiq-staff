@@ -15,13 +15,19 @@
       }
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "ios": {
+        "resourceClass": "m-medium"
+      }
     },
     "staff-testflight": {
       "extends": "production",
       "distribution": "store",
       "env": {
         "EXPO_PUBLIC_APP_VARIANT": "staff"
+      },
+      "ios": {
+        "resourceClass": "m-medium"
       }
     },
     "member-testflight": {
@@ -29,6 +35,9 @@
       "distribution": "store",
       "env": {
         "EXPO_PUBLIC_APP_VARIANT": "member"
+      },
+      "ios": {
+        "resourceClass": "m-medium"
       }
     },
     "staff-sandbox-testflight": {
