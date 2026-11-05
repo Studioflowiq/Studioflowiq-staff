@@ -1,0 +1,13 @@
+name: flytflow verified release 2026-11-05
+jobs:
+  release:
+    type: build
+    params:
+      platform: ios
+      profile: production
+  upload:
+    needs: [release]
+    type: submit
+    params:
+      build_id: ${{ needs.release.outputs.build_id }}
+      profile: production
