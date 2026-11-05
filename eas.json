@@ -8,7 +8,15 @@
       "distribution": "store",
       "autoIncrement": true,
       "ios": {
-        "image": "latest"
+        "image": "macos-tahoe-26.6-xcode-27.1",
+        "resourceClass": "medium"
+      }
+    },
+    "launch-test": {
+      "extends": "production",
+      "autoIncrement": false,
+      "ios": {
+        "simulator": true
       }
     }
   },

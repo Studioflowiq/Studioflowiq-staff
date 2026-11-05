@@ -1,0 +1,33 @@
+name: AV8 FLY scene lifecycle verification and replacement
+on:
+  workflow_dispatch: {}
+jobs:
+  build_simulator:
+    name: Build release app for launch tests
+    type: build
+    params:
+      platform: ios
+      profile: launch-test
+  test_launch:
+    name: Verify clean launch, relaunch and foreground on iOS 27
+    needs: [build_simulator]
+    type: maestro
+    image: macos-tahoe-26.6-xcode-27.1
+    runs_on: macos-medium
+    params:
+      build_id: ${{ needs.build_simulator.outputs.build_id }}
+      flow_path: .maestro/launch.yaml
+  build_ios:
+    name: Build replacement after launch tests pass
+    needs: [test_launch]
+    type: build
+    params:
+      platform: ios
+      profile: production
+  submit_ios:
+    name: Upload verified candidate to TestFlight
+    needs: [build_ios]
+    type: submit
+    params:
+      build_id: ${{ needs.build_ios.outputs.build_id }}
+      profile: production

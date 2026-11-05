@@ -1,0 +1,23 @@
+appId: com.av8fly.app
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Close feature guide"
+    timeout: 30000
+- tapOn: "Close feature guide"
+- assertVisible: "All features"
+- assertVisible: "Edit ordered flight stops"
+- takeScreenshot: launch-clean-install
+- tapOn: "All features"
+- assertVisible: "ALL FEATURES"
+- tapOn: "Close features"
+- stopApp
+- launchApp
+- assertVisible: "All features"
+- assertVisible: "Edit ordered flight stops"
+- takeScreenshot: launch-repeat
+- pressKey: Home
+- launchApp
+- assertVisible: "All features"
+- takeScreenshot: launch-foreground

@@ -36,6 +36,14 @@
         {
           "motionPermission": "Use device motion and the barometer when you enable AV8's experimental attitude or measured ambient pressure display."
         }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "enableSceneSupport": true
+          }
+        }
       ]
     ]
   }
