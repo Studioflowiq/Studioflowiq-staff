@@ -9,6 +9,9 @@
       "autoIncrement": true,
       "env": {
         "EXPO_PUBLIC_APP_VARIANT": "management"
+      },
+      "ios": {
+        "resourceClass": "m-medium"
       }
     },
     "management-preview": {
@@ -25,6 +28,9 @@
       "autoIncrement": true,
       "env": {
         "EXPO_PUBLIC_APP_VARIANT": "guest"
+      },
+      "ios": {
+        "resourceClass": "m-medium"
       }
     },
     "guest-preview": {
@@ -41,6 +47,9 @@
       "autoIncrement": true,
       "env": {
         "EXPO_PUBLIC_APP_VARIANT": "vendor"
+      },
+      "ios": {
+        "resourceClass": "m-medium"
       }
     },
     "vendor-preview": {

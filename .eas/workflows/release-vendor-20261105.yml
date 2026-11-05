@@ -1,0 +1,17 @@
+name: vendor verified release 2026-11-05
+jobs:
+  release:
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: vendor
+    params:
+      platform: ios
+      profile: vendor-testflight
+  upload:
+    needs: [release]
+    type: submit
+    env:
+      EXPO_PUBLIC_APP_VARIANT: vendor
+    params:
+      build_id: ${{ needs.release.outputs.build_id }}
+      profile: vendor-testflight

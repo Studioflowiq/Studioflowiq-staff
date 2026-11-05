@@ -1,0 +1,17 @@
+name: guest verified release 2026-11-05
+jobs:
+  release:
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: guest
+    params:
+      platform: ios
+      profile: guest-testflight
+  upload:
+    needs: [release]
+    type: submit
+    env:
+      EXPO_PUBLIC_APP_VARIANT: guest
+    params:
+      build_id: ${{ needs.release.outputs.build_id }}
+      profile: guest-testflight
