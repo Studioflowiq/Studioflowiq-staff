@@ -11,6 +11,16 @@
         "image": "latest",
         "resourceClass": "m-medium"
       }
+    },
+    "review-simulator": {
+      "extends": "production",
+      "distribution": "internal",
+      "autoIncrement": false,
+      "ios": {
+        "simulator": true,
+        "resourceClass": "m-medium"
+      },
+      "environment": "production"
     }
   },
   "submit": {
