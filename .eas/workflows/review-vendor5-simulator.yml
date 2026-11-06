@@ -1,0 +1,9 @@
+name: VayHaven Vendor build 5 simulator only
+jobs:
+  current_vendor_simulator:
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: vendor
+    params:
+      platform: ios
+      profile: vendor-screenshots
