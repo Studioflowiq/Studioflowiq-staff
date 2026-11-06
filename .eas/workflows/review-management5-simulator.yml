@@ -1,0 +1,9 @@
+name: VayHaven Management build 5 simulator only
+jobs:
+  current_management_simulator:
+    type: build
+    env:
+      EXPO_PUBLIC_APP_VARIANT: management
+    params:
+      platform: ios
+      profile: management-screenshots
