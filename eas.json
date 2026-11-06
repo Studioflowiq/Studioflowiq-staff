@@ -61,6 +61,16 @@
       "ios": {
         "simulator": true
       }
+    },
+    "staff-review-simulator": {
+      "extends": "staff-testflight",
+      "distribution": "internal",
+      "autoIncrement": false,
+      "ios": {
+        "simulator": true,
+        "resourceClass": "m-medium"
+      },
+      "environment": "production"
     }
   },
   "submit": {
