@@ -1,0 +1,53 @@
+appId: com.av8fly.app
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    text: Close feature guide
+    optional: true
+- tapOn: All features
+- scrollUntilVisible:
+    element:
+      text: Trip notes on this device
+    direction: DOWN
+- tapOn: Trip notes on this device
+- tapOn:
+    text: Close feature guide
+    optional: true
+- scrollUntilVisible:
+    element:
+      text: Personal trip notes
+    direction: DOWN
+    centerElement: true
+- tapOn:
+    text: Personal trip notes
+    index: 1
+- inputText: Native review persistence check
+- scrollUntilVisible:
+    element:
+      text: Save trip notes
+    direction: DOWN
+    centerElement: true
+- repeat:
+    times: 2
+    commands:
+      - tapOn: Save trip notes
+- assertVisible: Saved on this device.
+- takeScreenshot: saved-native-trip-notes
+- stopApp
+- launchApp
+- tapOn:
+    text: Close feature guide
+    optional: true
+- tapOn: All features
+- scrollUntilVisible:
+    element:
+      text: Trip notes on this device
+    direction: DOWN
+- tapOn: Trip notes on this device
+- scrollUntilVisible:
+    element:
+      text: Native review persistence check
+    direction: DOWN
+- assertVisible: Native review persistence check
+- takeScreenshot: native-trip-notes-after-relaunch
