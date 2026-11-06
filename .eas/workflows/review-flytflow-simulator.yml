@@ -1,0 +1,7 @@
+name: Current flytflow candidate simulator only
+jobs:
+  current_simulator:
+    type: build
+    params:
+      platform: ios
+      profile: screenshots
