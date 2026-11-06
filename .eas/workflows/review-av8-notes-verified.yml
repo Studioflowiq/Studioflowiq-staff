@@ -1,0 +1,28 @@
+name: Verify AV8 notes persistence before TestFlight
+jobs:
+  simulator:
+    type: build
+    params:
+      platform: ios
+      profile: launch-test
+  verify_notes:
+    needs: [simulator]
+    type: maestro
+    runs_on: macos-medium
+    params:
+      build_id: ${{ needs.simulator.outputs.build_id }}
+      flow_path: .maestro/review-trip-notes-persistence.yml
+      retries: 0
+      record_screen: true
+  production:
+    needs: [verify_notes]
+    type: build
+    params:
+      platform: ios
+      profile: production
+  testflight:
+    needs: [production]
+    type: submit
+    params:
+      build_id: ${{ needs.production.outputs.build_id }}
+      profile: production
