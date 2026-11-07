@@ -5,3 +5,5 @@ export function activeBooking(booking:any):boolean;
 export function localDay(timezone:string,now?:Date):string;
 export function scanMember(value:string):string|null;
 export function sortClasses(classes:any[]):any[];
+
+export function displayTime(time?: string | null): string;
