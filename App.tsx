@@ -80,7 +80,7 @@ function StudioApp(){
  {sheet==='store'&&<Store api={api} member={MEMBER} state={data} selection={detail} onRefresh={reload}/ >}
  {sheet==='announcement'&&<AnnouncementEditor initial={data?.studio?.announcement?.text||''} initialDuration={data?.studio?.announcement?.durationHours} initialExpires={data?.studio?.announcement?.expiresAt} onSave={async(text:string,durationHours:number)=>{await api('/api/mobile/announcement',{text,durationHours});await reload();setSheet('')}}/>}
  {sheet==='privacy'&&<Privacy api={api}/ >}
- {sheet==='hours'&&<StaffHours api={api} state={data} mutate={mutate}/ >}
+ {sheet==='hours'&&<StaffHours api={api} state={data} mutate={mutate} reload={reload} clockBusy={busy}/ >}
  {sheet==='commissions'&&<Commissions api={api}/ >}
  {sheet==='staff'&&<StaffAccounts api={api} state={data}/ >}
  {sheet==='billing'&&<Billing api={api}/ >}
