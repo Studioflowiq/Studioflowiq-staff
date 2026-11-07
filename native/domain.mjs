@@ -5,3 +5,10 @@ export function activeBooking(b){return ['Booked','Checked in','Waitlist'].inclu
 export function localDay(timezone,now=new Date()){return new Intl.DateTimeFormat('en-CA',{timeZone:timezone||'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).format(now)}
 export function scanMember(value){return typeof value==='string'&&value.startsWith('SFIQ:member:')&&value.length>12?value.slice(12):null}
 export function sortClasses(classes){return [...classes].sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))}
+
+export function displayTime(time) {
+  const match = /^(\d{1,2}):([0-5]\d)(?::[0-5]\d)?$/.exec(time ?? '');
+  if (!match || Number(match[1]) > 23) return time ?? '';
+  const hour = Number(match[1]);
+  return `${hour % 12 || 12}:${match[2]} ${hour < 12 ? 'AM' : 'PM'}`;
+}
